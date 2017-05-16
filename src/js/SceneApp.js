@@ -119,8 +119,6 @@ class SceneApp extends alfrid.Scene {
 
 
 	render() {
-		
-
 		if(!VIVEUtils.hasVR) { this.toRender(); }
 	}
 
@@ -195,7 +193,7 @@ class SceneApp extends alfrid.Scene {
 
 
 	resize() {
-		let scale = VIVEUtils.hasVR ? 2 : 1;
+		let scale = VIVEUtils.hasVR ? 1 : 1;
 		if(GL.isMobile) {
 			scale = 1;
 		}
