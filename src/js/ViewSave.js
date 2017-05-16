@@ -30,7 +30,9 @@ class ViewSave extends alfrid.View {
 		const m = mat4.create();
 
 		function getPos() {
-			let v = vec3.fromValues(0, 0, Math.random() * 3);
+			let r = 1.0 - Math.sin(Math.random() * Math.PI * 0.5) * 3;
+			// r = Math.pow(r, 3.0) * 3;
+			let v = vec3.fromValues(0, 0, r);
 			mat4.identity(m, m);
 			mat4.rotateX(m, m, Math.random() * Math.PI * 2);
 			mat4.rotateY(m, m, Math.random() * Math.PI * 2);

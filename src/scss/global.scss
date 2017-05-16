@@ -97,3 +97,61 @@ a {
 		opacity: 1;
 	}
 }
+
+
+
+
+#enterVr {
+	position: absolute;
+	margin-bottom:70px;
+	width: 100%;
+	bottom:0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+    transition: opacity .5s ease-out;
+    display: none;
+    opacity: 0;
+    z-index: 999;
+
+    .hasVR & {
+    	display:block;
+    	opacity: .5;
+
+    	&:hover {
+    		opacity:1;
+    	}
+    }
+
+    p {
+    	margin:0;
+    	padding-top:5px;
+    	font-size:12px;
+    	letter-spacing: 2px;
+    	width: 100%;
+    	text-align: center;
+    	color:white;
+    }
+
+    .present-vr & {
+    	opacity: 0;
+    }
+}
+
+.icon-vr {
+	position: absolute;
+	$iconSize:60px;
+
+	left:50%;
+
+	width: $iconSize;
+	height: $iconSize;
+	margin-left:-$iconSize/2;
+	
+
+	background: url(../../dist/assets/img/logo_vr.png);
+	background-size: cover;
+}
+

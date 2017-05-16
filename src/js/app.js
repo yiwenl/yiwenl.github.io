@@ -7,6 +7,8 @@ import Stats from 'stats.js';
 import assets from './asset-list';
 import Assets from './Assets';
 
+import VIVEUtils from './utils/VIVEUtils';
+
 window.params = {
 	numParticles:256,
 	skipCount:10,
@@ -37,7 +39,7 @@ function _init() {
 		}).on('complete', _onImageLoaded)
 		.start();	
 	} else {
-		_init3D();
+		_initVR();
 	}
 
 }
@@ -50,11 +52,34 @@ function _onImageLoaded(o) {
 	const loader = document.body.querySelector('.Loading-Bar');
 	loader.style.width = '100%';
 
-	_init3D();
+	_initVR();
 
 	setTimeout(()=> {
 		document.body.classList.remove('isLoading');
 	}, 250);
+}
+
+function _initVR() {
+	VIVEUtils.init( (vrDisplay) => _onVR(vrDisplay));
+}
+
+function _onVR(vrDisplay) {
+	console.log("Has VR ? ", VIVEUtils.hasVR);
+	if(vrDisplay != null) {
+		document.body.classList.add('hasVR');
+		let btnVR = document.body.querySelector('#enterVr');
+		btnVR.addEventListener('click', ()=> {
+			VIVEUtils.present(GL.canvas, ()=> {
+				document.body.classList.add('present-vr')
+				scene.resize();
+			});
+		});
+	} else {
+		//	do nothing
+	}
+
+
+	_init3D();
 }
 
 
