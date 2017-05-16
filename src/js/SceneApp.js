@@ -6,8 +6,11 @@ import ViewSave from './ViewSave';
 import ViewRender from './ViewRender';
 import ViewSim from './ViewSim';
 
-window.getAsset = function(id) {
-	return assets.find( (a) => a.id === id).file;
+import VIVEUtils from './utils/VIVEUtils';
+
+const scissor = function(x, y, w, h) {
+	GL.scissor(x, y, w, h);
+	GL.viewport(x, y, w, h);
 }
 
 class SceneApp extends alfrid.Scene {
@@ -15,10 +18,23 @@ class SceneApp extends alfrid.Scene {
 		super();
 		GL.enableAlphaBlending();
 
+		const { near, far } = params.camera;
 		this._count = 0;
-		this.camera.setPerspective(Math.PI/2, GL.aspectRatio, .1, 100);
+		this.camera.setPerspective(Math.PI/2, GL.aspectRatio, near, far)
 		this.orbitalControl.radius.value = 10;
 		this.orbitalControl.rx.value = this.orbitalControl.ry.value = 0.3;
+
+		this._modelMatrix = mat4.create();
+		this._projectionMatrix = mat4.create();
+		mat4.perspective(this._projectionMatrix, Math.PI/4, GL.aspectRatio, near, far)
+
+		if(VIVEUtils.hasVR) {
+			GL.enable(GL.SCISSOR_TEST);
+			this.toRender();
+
+			this.resize();
+			this.orbitalControl.lock();
+		}
 	}
 
 	_initTextures() {
@@ -103,26 +119,77 @@ class SceneApp extends alfrid.Scene {
 
 
 	render() {
+		
 
+		if(!VIVEUtils.hasVR) { this.toRender(); }
+	}
+
+
+	toRender() {
 		this._count ++;
 		if(this._count % params.skipCount == 0) {
 			this._count = 0;
+			GL.disable(GL.SCISSOR_TEST);
 			this.updateFbo();
+			GL.enable(GL.SCISSOR_TEST);
 		}
 
-		let p = this._count / params.skipCount;
+		if(VIVEUtils.hasVR) {	VIVEUtils.vrDisplay.requestAnimationFrame(()=>this.toRender());	}		
 
+
+		if(VIVEUtils.hasVR) {
+			
+			VIVEUtils.getFrameData();
+			const w2 = GL.width/2;
+			VIVEUtils.setCamera(this.camera, 'left');
+
+			scissor(0, 0, w2, GL.height);
+			GL.setMatrices(this.camera);
+			GL.rotate(this._modelMatrix);
+			this.renderScene();
+
+
+			VIVEUtils.setCamera(this.camera, 'right');
+			scissor(w2, 0, w2, GL.height);
+			GL.setMatrices(this.camera);
+			GL.rotate(this._modelMatrix);
+			this.renderScene();
+
+			VIVEUtils.submitFrame();
+
+			// //	re-render whole
+			// scissor(0, 0, GL.width, GL.height);
+
+			// GL.clear(0, 0, 0, 0);
+			// mat4.copy(this.cameraVR.projection, this.camera.projection);
+
+			// GL.setMatrices(this.cameraVR);
+			// GL.rotate(this._modelMatrix);
+			// this.renderScene();
+
+		} else {
+			GL.setMatrices(this.camera);
+			GL.rotate(this._modelMatrix);
+			this.renderScene();
+		}
+	}
+
+
+	renderScene() {
 		GL.clear(0, 0, 0, 0);
 		// this._bAxis.draw();
 		this._bDots.draw();
 
+		let p = this._count / params.skipCount;
 		this._vRender.render(this._fboTargetPos.getTexture(), this._fboCurrentPos.getTexture(), p, this._fboExtra.getTexture());
-
 	}
 
 
 	resize() {
-		const scale = GL.isMobile ? 1 : 1;
+		let scale = VIVEUtils.hasVR ? 2 : 1;
+		if(GL.isMobile) {
+			scale = 1;
+		}
 		GL.setSize(window.innerWidth * scale, window.innerHeight * scale);
 		this.camera.setAspectRatio(GL.aspectRatio);
 	}

@@ -10,9 +10,13 @@ import Assets from './Assets';
 import VIVEUtils from './utils/VIVEUtils';
 
 window.params = {
-	numParticles:256,
+	numParticles:32,
 	skipCount:10,
-	maxRadius: 2.5
+	maxRadius: 2.5,
+	camera:{
+		near:.1,
+		far:100
+	}
 };
 
 if(document.body) {

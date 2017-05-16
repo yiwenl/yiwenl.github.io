@@ -101,6 +101,7 @@ class VIVEUtils {
 	}
 
 	_checkGamepads() {
+		if(!navigator.getGamepads) {	return; }
 		const gamepads = navigator.getGamepads();
 		let count = 0;
 
