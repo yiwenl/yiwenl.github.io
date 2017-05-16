@@ -44,3 +44,56 @@ a {
 	left:0;
 	bottom:0;
 }
+
+
+
+.Main-Canvas {
+	width:100%;
+	height:100%;
+	top:0px;
+	left:0px;
+	position: absolute;
+	user-select:none;
+
+	opacity: 1;
+	transition: opacity .5s ease-out .25s;
+
+	.isLoading & {
+		opacity: 0;
+	}
+}
+
+
+.Message {
+	position: absolute;
+	z-index: 999;
+	width: 100%;
+	top: calc(50% - 50px);
+	text-align: center;
+	letter-spacing: 11px;
+	color:white;
+
+	opacity: 0;
+	transition:opacity .5s ease-out, letter-spacing .5s ease-out;
+
+	.isLoading & {
+		letter-spacing: 10px;
+		opacity: 1;
+	}
+}
+
+.Loading-Bar {
+	position: absolute;
+	z-index: 998;
+	width: 0%;
+	height:1px;
+	top:50%;
+	background:rgba(255, 255, 255, .5);
+	opacity: 0;
+
+	transition:width .5s ease-out, opacity .5s ease-out;
+
+	.isLoading & {
+		opacity: 1;
+	}
+}
