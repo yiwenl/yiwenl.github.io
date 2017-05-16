@@ -18,8 +18,6 @@ uniform vec2 uViewport;
 varying vec4 vColor;
 varying vec3 vNormal;
 
-const float radius = 0.01;
-
 void main(void) {
 	vec2 uv      = aVertexPosition.xy;
 	vec3 posCurr = texture2D(textureCurr, uv).rgb;
@@ -28,16 +26,13 @@ void main(void) {
 	vec3 extra   = texture2D(textureExtra, uv).rgb;
 	gl_Position  = uProjectionMatrix * uViewMatrix * uModelMatrix * vec4(pos, 1.0);
 	
-	
-	
-
 	float g 	 = sin(extra.r + time * mix(extra.b, 1.0, .5));
 	g 			 = smoothstep(0.0, 1.0, g);
 	g 			 = mix(g, 1.0, .5);
 	vColor       = vec4(vec3(g), 1.0);
 
-	float distOffset = uViewport.y * uProjectionMatrix[1][1] * radius / gl_Position.w;
-    gl_PointSize = distOffset * (1.0 + extra.x * 1.0) * uParticleScale;
+	float distOffset = uViewport.y * uProjectionMatrix[1][1] * (0.01 * uParticleScale) / gl_Position.w;
+    gl_PointSize = distOffset * (1.0 + extra.x * 1.0);
 
 	vNormal 	 = aNormal;
 }
