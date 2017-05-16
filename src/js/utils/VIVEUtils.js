@@ -135,6 +135,11 @@ class VIVEUtils {
 		return this._vrDisplay;
 	}
 
+
+	get isPresenting() {
+		return this._vrDisplay.isPresenting;
+	}
+
 }
 
 let instance;

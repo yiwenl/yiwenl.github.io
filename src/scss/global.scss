@@ -35,6 +35,7 @@ a {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	letter-spacing: 4px;
+	user-select:none;
 }
 
 
@@ -105,7 +106,7 @@ a {
 	position: absolute;
 	margin-bottom:70px;
 	width: 100%;
-	bottom:0px;
+	bottom:100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -142,7 +143,7 @@ a {
 
 .icon-vr {
 	position: absolute;
-	$iconSize:60px;
+	$iconSize:100px;
 
 	left:50%;
 

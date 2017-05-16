@@ -64,8 +64,8 @@ class SceneApp extends alfrid.Scene {
 		//	helpers
 		this._bCopy = new alfrid.BatchCopy();
 		// this._bAxis = new alfrid.BatchAxis();
-		this._bDots = new alfrid.BatchDotsPlane();
-		this._bBall = new alfrid.BatchBall();
+		// this._bDots = new alfrid.BatchDotsPlane();
+		// this._bBall = new alfrid.BatchBall();
 
 
 		//	views
@@ -137,7 +137,8 @@ class SceneApp extends alfrid.Scene {
 		if(VIVEUtils.hasVR) {	VIVEUtils.vrDisplay.requestAnimationFrame(()=>this.toRender());	}		
 
 
-		if(VIVEUtils.hasVR) {
+		if(VIVEUtils.hasVR && VIVEUtils.isPresenting) {
+			this.orbitalControl.lock();
 			
 			VIVEUtils.getFrameData();
 			const w2 = GL.width/2;
@@ -158,16 +159,27 @@ class SceneApp extends alfrid.Scene {
 			VIVEUtils.submitFrame();
 
 			// //	re-render whole
-			// scissor(0, 0, GL.width, GL.height);
+			if(!GL.isMobile) {
+				scissor(0, 0, GL.width, GL.height);
 
-			// GL.clear(0, 0, 0, 0);
-			// mat4.copy(this.cameraVR.projection, this.camera.projection);
+				GL.clear(0, 0, 0, 0);
+				mat4.copy(this.cameraVR.projection, this.camera.projection);
 
-			// GL.setMatrices(this.cameraVR);
-			// GL.rotate(this._modelMatrix);
-			// this.renderScene();
+				GL.setMatrices(this.cameraVR);
+				GL.rotate(this._modelMatrix);
+				this.renderScene();	
+			}
 
 		} else {
+			scissor(0, 0, GL.width, GL.height);
+			if(VIVEUtils.hasVR && GL.isMobile) {
+				VIVEUtils.getFrameData();
+				VIVEUtils.setCamera(this.camera, 'left');
+				mat4.copy(this.camera._projection, this._projectionMatrix);
+			} else {
+				this.orbitalControl.lock(false);
+			}
+
 			GL.setMatrices(this.camera);
 			GL.rotate(this._modelMatrix);
 			this.renderScene();
@@ -177,9 +189,6 @@ class SceneApp extends alfrid.Scene {
 
 	renderScene() {
 		GL.clear(0, 0, 0, 0);
-		// this._bAxis.draw();
-		this._bDots.draw();
-
 		let p = this._count / params.skipCount;
 		this._vRender.render(this._fboTargetPos.getTexture(), this._fboCurrentPos.getTexture(), p, this._fboExtra.getTexture());
 	}
