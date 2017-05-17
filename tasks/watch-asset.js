@@ -2,7 +2,8 @@
 
 'use strict';
 
-const fs           = require('fs');
+const fs           = require('fs-extra');
+const path           = require('path');
 const watcher      = require('./watch');
 const getExtension = require('./getExtension');
 const getFileName = require('./getFileName');
@@ -110,8 +111,10 @@ function getAssets() {
 	}
 
 	for(let i=0; i<ASSETS_PATH.length; i++) {
-		let dir = ASSETS_PATH[i];
-		getAssetsInDir(dir, onFolder);
+		let dir = path.resolve(ASSETS_PATH[i]);
+		fs.ensureDir(dir,()=> {
+			getAssetsInDir(dir, onFolder);	
+		});
 	}
 }
 
@@ -148,7 +151,6 @@ function generateAssetList() {
 	strList = strList.replace('[', '[\n\t');
 	strList = strList.replace(']', '\n]');
 	strList = strList.split('},{').join('},\n\t{');
-	console.log(strList);
 
 	fs.readFile(TEMPLATE_PATH, 'utf8', (err, str) => {
 		if(err) {
