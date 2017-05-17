@@ -30,7 +30,7 @@ class FrameBuffer {
 
 	constructor(mWidth, mHeight, mParameters = {}, multipleTargets = false) {
 		gl = GL.gl;
-		webglDepthTexture = GL.checkExtension('WEBGL_depth_texture');
+		webglDepthTexture = GL.checkExtension('WEBGL_depth_texture') && 0;
 
 		this.width            = mWidth;
 		this.height           = mHeight;
@@ -75,11 +75,6 @@ class FrameBuffer {
 		gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
 
 		if(GL.webgl2) {
-			// this.renderBufferDepth = gl.createRenderbuffer();
-			// gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBufferDepth);
-			// gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, this.width, this.height);
-			// gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.renderBufferDepth);
-
 			const buffers = [];
 			for (let i = 0; i < this._textures.length; i++) {
 				gl.framebufferTexture2D(gl.DRAW_FRAMEBUFFER, gl.COLOR_ATTACHMENT0 + i, gl.TEXTURE_2D, this._textures[i].texture, 0);
@@ -91,7 +86,9 @@ class FrameBuffer {
 			gl.framebufferTexture2D(gl.DRAW_FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, this.glDepthTexture.texture, 0);
 
 		} else {
+			console.log('gl.COLOR_ATTACHMENT0', gl.COLOR_ATTACHMENT0, this._textures.length);
 			for (let i = 0; i < this._textures.length; i++) {
+				console.log(i, gl.COLOR_ATTACHMENT0 + i);
 				gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0 + i, gl.TEXTURE_2D, this._textures[i].texture, 0);	
 			}
 
@@ -105,6 +102,7 @@ class FrameBuffer {
 			}
 
 			if(webglDepthTexture) {
+				// console.debug('am i here');
 				gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, this.glDepthTexture.texture, 0);	
 			}
 		}
@@ -121,7 +119,24 @@ class FrameBuffer {
 		//	CHECKING FBO
 		const FBOstatus = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
 		if(FBOstatus != gl.FRAMEBUFFER_COMPLETE) {
-			console.log('GL_FRAMEBUFFER_COMPLETE failed, CANNOT use Framebuffer');
+			console.log('GL_FRAMEBUFFER_COMPLETE failed, CANNOT use Framebuffer', FBOstatus);
+
+			const status = [
+				'FRAMEBUFFER_INCOMPLETE_ATTACHMENT',
+				'FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT',
+				'FRAMEBUFFER_INCOMPLETE_DIMENSIONS',
+				'FRAMEBUFFER_UNSUPPORTED'
+			]
+
+			status.forEach((status)=> {
+				if(FBOstatus === gl[status]) {
+					console.log('Error : ', status);
+				}
+			})
+			// console.log('gl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT', gl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT);
+			// console.log('gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT', gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT);
+			// console.log('gl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS', gl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS);
+			// console.log('gl.FRAMEBUFFER_UNSUPPORTED', gl.FRAMEBUFFER_UNSUPPORTED);
 		}
 
 		//	UNBIND

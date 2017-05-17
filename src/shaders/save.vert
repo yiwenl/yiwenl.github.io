@@ -14,7 +14,7 @@ varying vec3 vColor;
 varying vec3 vNormal;
 
 void main(void) {
-	vColor      = aVertexPosition;
+	vColor      = aVertexPosition + aNormal * 0.0;
 	vec3 pos    = vec3(aTextureCoord, 0.0);
 	gl_Position = uProjectionMatrix * uViewMatrix * uModelMatrix * vec4(pos, 1.0);
 

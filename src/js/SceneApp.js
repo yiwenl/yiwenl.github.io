@@ -39,13 +39,17 @@ class SceneApp extends alfrid.Scene {
 
 	_initTextures() {
 		console.log('init textures');
+		console.log('Float :', GL.FLOAT, 'Half Float :', GL.HALF_FLOAT);
+
+		const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
 
 		//	FBOS
 		const numParticles = params.numParticles;
 		const o = {
 			minFilter:GL.NEAREST,
 			magFilter:GL.NEAREST,
-			type:GL.HALF_FLOAT
+			type:iOS ? GL.HALF_FLOAT : GL.FLOAT
 		};
 
 		this._fboCurrentPos = new alfrid.FrameBuffer(numParticles, numParticles, o);
