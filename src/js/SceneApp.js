@@ -1,10 +1,12 @@
 // SceneApp.js
 
 import alfrid, { Scene, GL } from 'alfrid';
+import Assets from './Assets';
 import ViewAddVel from './ViewAddVel';
 import ViewSave from './ViewSave';
 import ViewRender from './ViewRender';
 import ViewSim from './ViewSim';
+import ViewFloor from './ViewFloor';
 
 import VIVEUtils from './utils/VIVEUtils';
 
@@ -23,17 +25,22 @@ class SceneApp extends alfrid.Scene {
 		this.camera.setPerspective(Math.PI/2, GL.aspectRatio, near, far)
 		this.orbitalControl.radius.value = 10;
 		this.orbitalControl.rx.value = this.orbitalControl.ry.value = 0.3;
+		this.orbitalControl.rx.limit(0, .3);
 
 		this._modelMatrix = mat4.create();
+		
 		this._projectionMatrix = mat4.create();
 		mat4.perspective(this._projectionMatrix, Math.PI/4, GL.aspectRatio, near, far)
 
 		if(VIVEUtils.hasVR) {
+			mat4.translate(this._modelMatrix, this._modelMatrix, vec3.fromValues(0, params.floor * 2, 0));
 			GL.enable(GL.SCISSOR_TEST);
 			this.toRender();
 
 			this.resize();
 			this.orbitalControl.lock();
+		} else {
+			mat4.translate(this._modelMatrix, this._modelMatrix, vec3.fromValues(0, params.floor, 0));
 		}
 	}
 
@@ -67,6 +74,8 @@ class SceneApp extends alfrid.Scene {
 		
 		//	helpers
 		this._bCopy = new alfrid.BatchCopy();
+
+		this._vFloor = new ViewFloor();
 		// this._bAxis = new alfrid.BatchAxis();
 		// this._bDots = new alfrid.BatchDotsPlane();
 		// this._bBall = new alfrid.BatchBall();
@@ -180,6 +189,7 @@ class SceneApp extends alfrid.Scene {
 				mat4.copy(this.camera._projection, this._projectionMatrix);
 			} else {
 				this.orbitalControl.lock(false);
+				this.orbitalControl.lockZoom(true);
 			}
 
 			GL.setMatrices(this.camera);
@@ -193,6 +203,7 @@ class SceneApp extends alfrid.Scene {
 		GL.clear(0, 0, 0, 0);
 		let p = this._count / params.skipCount;
 		this._vRender.render(this._fboTargetPos.getTexture(), this._fboCurrentPos.getTexture(), p, this._fboExtra.getTexture());
+		this._vFloor.render();
 	}
 
 

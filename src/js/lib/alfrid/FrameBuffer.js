@@ -86,9 +86,7 @@ class FrameBuffer {
 			gl.framebufferTexture2D(gl.DRAW_FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, this.glDepthTexture.texture, 0);
 
 		} else {
-			console.log('gl.COLOR_ATTACHMENT0', gl.COLOR_ATTACHMENT0, this._textures.length);
 			for (let i = 0; i < this._textures.length; i++) {
-				console.log(i, gl.COLOR_ATTACHMENT0 + i);
 				gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0 + i, gl.TEXTURE_2D, this._textures[i].texture, 0);	
 			}
 

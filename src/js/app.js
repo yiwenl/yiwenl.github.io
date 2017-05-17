@@ -12,7 +12,8 @@ import VIVEUtils from './utils/VIVEUtils';
 window.params = {
 	numParticles:256,
 	skipCount:10,
-	maxRadius: 2.5,
+	maxRadius: 5.0,
+	floor:-1.8,
 	camera:{
 		near:.1,
 		far:100
@@ -97,9 +98,13 @@ function _init3D() {
 
 		//	INIT 3D TOOL
 		GL.init(canvas, {ignoreWebgl2:true});
+		if(GL.isMobile) {
+			document.body.classList.add('is-mobile');
+		}
 
 		if(GL.isMobile) {
 			params.numParticles = 128;
+			params.maxRadius = 3;
 		}
 
 		//	INIT ASSETS

@@ -55,6 +55,8 @@ class ViewRender extends alfrid.View {
 		this.shader.uniform('percent', 'float', p);
 		this.shader.uniform('time', 'float', this.time);
 		this.shader.uniform("uParticleScale", "float", GL.isMobile ? 0.5 : 1.0);
+
+		this.shader.uniform(params.camera);
 		GL.draw(this.mesh);
 	}
 

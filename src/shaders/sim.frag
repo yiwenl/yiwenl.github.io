@@ -117,19 +117,26 @@ void main(void) {
 	vec3 pos        = texture2D(texturePos, vTextureCoord).rgb;
 	vec3 vel        = texture2D(textureVel, vTextureCoord).rgb;
 	vec3 extra      = texture2D(textureExtra, vTextureCoord).rgb;
-	float posOffset = mix(1.0, extra.r, 0.65) * .1;
+	float posOffset = mix(1.0, extra.r, 0.65) * .12;
 	vec3 acc        = curlNoise(pos * posOffset + time * .2);
 	
-	vel += acc * .02;
+	vel += acc * mix(extra.g, 1.0, .37) * .005;
 
 	float dist = length(pos);
 	if(dist > maxRadius) {
-		float f = (dist - maxRadius) * .004;
+		float f = (dist - maxRadius) * .002;
 		vel -= normalize(pos) * f;
 	}
 
-	const float decrease = .93;
+	const float decrease = .967;
 	vel *= decrease;
+
+
+	dist = pos.y;
+	const float minY = 3.0;
+	if(pos.y < minY) {
+		vel.y += (minY - pos.y) * 0.01;
+	}
 
 	gl_FragColor = vec4(vel, 1.0);
 }
