@@ -8,6 +8,7 @@ import ViewRender from './ViewRender';
 import ViewSim from './ViewSim';
 import ViewFloor from './ViewFloor';
 
+// import Sono from 'sono';
 import VIVEUtils from './utils/VIVEUtils';
 
 const scissor = function(x, y, w, h) {
@@ -18,6 +19,7 @@ const scissor = function(x, y, w, h) {
 class SceneApp extends alfrid.Scene {
 	constructor() {
 		super();
+
 		GL.enableAlphaBlending();
 
 		const { near, far } = params.camera;
@@ -42,6 +44,11 @@ class SceneApp extends alfrid.Scene {
 		} else {
 			mat4.translate(this._modelMatrix, this._modelMatrix, vec3.fromValues(0, params.floor, 0));
 		}
+
+		// if(!GL.isMobile) {
+		// 	this._initSound();	
+		// }
+		
 	}
 
 	_initTextures() {
@@ -102,6 +109,19 @@ class SceneApp extends alfrid.Scene {
 		this._fboTargetPos.unbind();
 
 		GL.setMatrices(this.camera);
+	}
+
+	_initSound() {
+		const path = window.location.href.indexOf('localhost') > -1 ? "./assets/audio/bg.mp3" : "./dist/assets/audio/bg.mp3"
+
+		this.music = Sono.load({
+			src: [path],
+			volume: 0.1,
+			loop: true,
+			onComplete: (sound)=> {
+				sound.play();
+			}
+		});
 	}
 
 
