@@ -135,7 +135,7 @@ class SceneApp extends alfrid.Scene {
 		if(VIVEUtils.hasVR) {	VIVEUtils.vrDisplay.requestAnimationFrame(()=>this.toRender());	}		
 
 
-		if(VIVEUtils.hasVR && VIVEUtils.isPresenting) {
+		if(VIVEUtils.hasVR && VIVEUtils.isPresenting ) {
 			this.orbitalControl.lock();
 			
 			VIVEUtils.getFrameData();

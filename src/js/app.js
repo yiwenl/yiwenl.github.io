@@ -68,8 +68,9 @@ function _initVR() {
 }
 
 function _onVR(vrDisplay) {
-	console.log("Has VR ? ", VIVEUtils.hasVR);
-	if(vrDisplay != null) {
+	console.log("Has VR ? ", VIVEUtils.hasVR, 'Can present ? ', VIVEUtils.canPresent);
+
+	if(vrDisplay != null && VIVEUtils.canPresent) {
 		document.body.classList.add('hasVR');
 		let btnVR = document.body.querySelector('#enterVr');
 		btnVR.addEventListener('click', ()=> {

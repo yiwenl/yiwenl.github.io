@@ -111,7 +111,7 @@ function getAssets() {
 	}
 
 	for(let i=0; i<ASSETS_PATH.length; i++) {
-		let dir = path.resolve(ASSETS_PATH[i]);
+		let dir = ASSETS_PATH[i];
 		fs.ensureDir(dir,()=> {
 			getAssetsInDir(dir, onFolder);	
 		});
