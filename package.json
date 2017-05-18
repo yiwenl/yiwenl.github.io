@@ -47,7 +47,7 @@
     "path": "^0.12.7",
     "raw-loader": "^0.5.1",
     "sass-loader": "^3.2.0",
-    "sono": "^2.0.9",
+    "sono": "2.0.9",
     "stats.js": "^0.16.0",
     "style-loader": "0.13.1",
     "url-loader": "^0.5.7",

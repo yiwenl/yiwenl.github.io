@@ -8,7 +8,7 @@ import ViewRender from './ViewRender';
 import ViewSim from './ViewSim';
 import ViewFloor from './ViewFloor';
 
-// import Sono from 'sono';
+import Sono from 'sono';
 import VIVEUtils from './utils/VIVEUtils';
 
 const scissor = function(x, y, w, h) {
@@ -45,9 +45,9 @@ class SceneApp extends alfrid.Scene {
 			mat4.translate(this._modelMatrix, this._modelMatrix, vec3.fromValues(0, params.floor, 0));
 		}
 
-		// if(!GL.isMobile) {
-		// 	this._initSound();	
-		// }
+		if(!GL.isMobile) {
+			this._initSound();	
+		}
 		
 	}
 
