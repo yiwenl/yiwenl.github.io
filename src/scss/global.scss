@@ -9,7 +9,7 @@ html, body {
 	position: static;
 	
 	$gradient0: #FFF;
-	$gradient1: #CCC;
+	$gradient1: #FFF;
 
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6d6d6d+0,000000+100 */
 	background: $gradient0; /* Old browsers */
@@ -66,11 +66,11 @@ a {
 	position: absolute;
 	user-select:none;
 
-	opacity: 1;
-	transition: opacity .5s ease-out .25s;
+	opacity: 0;
+	transition: opacity .75s ease-out;
 
-	.isLoading & {
-		opacity: 0;
+	.isLoaded & {
+		opacity: 1;
 	}
 }
 

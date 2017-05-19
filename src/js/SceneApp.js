@@ -28,7 +28,7 @@ class SceneApp extends alfrid.Scene {
 		this.camera.setPerspective(Math.PI/2, GL.aspectRatio, near, far)
 		this.orbitalControl.radius.value = 10;
 		this.orbitalControl.rx.value = this.orbitalControl.ry.value = 0.3;
-		this.orbitalControl.rx.limit(0, .3);
+		this.orbitalControl.rx.limit(0.02, .3);
 
 		this._modelMatrix = mat4.create();
 		
@@ -47,8 +47,15 @@ class SceneApp extends alfrid.Scene {
 		}
 
 		if(!GL.isMobile) {
-			this._initSound();	
+			alfrid.Scheduler.delay(()=> {
+				this._initSound();		
+			}, null, 500);
+			
+		} else {
+			
 		}
+
+		document.body.classList.add('isLoaded');
 		
 	}
 
@@ -115,7 +122,6 @@ class SceneApp extends alfrid.Scene {
 
 	_initSound() {
 		const path = window.location.href.indexOf('localhost') > -1 ? "./assets/audio/bg.mp3" : "assets/audio/bg.mp3"
-
 		const volume = window.location.href.indexOf('localhost') > -1 ? 0 : 0.1;
 
 		this.music = Sono.load({
@@ -124,6 +130,7 @@ class SceneApp extends alfrid.Scene {
 			loop: true,
 			onComplete: (sound)=> {
 				sound.play();
+				document.body.classList.add('isLoaded');
 			}
 		});
 	}

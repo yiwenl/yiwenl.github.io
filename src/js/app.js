@@ -15,7 +15,7 @@ window.params = {
 	maxRadius: 20.0,
 	floor:-1.8,
 	camera:{
-		near:.1,
+		near:.01,
 		far:100
 	}
 };
@@ -108,18 +108,9 @@ function _init3D() {
 		}
 
 		//	INIT ASSETS
-		Assets.init();
-
-		//	INIT DAT-GUI
-		// window.gui = new dat.GUI({ width:300 });
-		// gui.add(params, 'maxRadius', 0.0, 10.0);
-
-		//	CREATE SCENE
-		const scene = new SceneApp();
-
-		//	STATS
-		// const stats = new Stats();
-		// document.body.appendChild(stats.domElement);
-		// alfrid.Scheduler.addEF(()=>stats.update());
+		Assets.init(()=> {
+			//	CREATE SCENE
+			const scene = new SceneApp();
+		});
 
 }
