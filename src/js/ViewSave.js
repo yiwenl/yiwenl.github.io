@@ -25,21 +25,15 @@ class ViewSave extends alfrid.View {
 		let totalParticles = numParticles * numParticles;
 		console.debug('Total Particles : ', totalParticles);
 		let ux, uy;
-		let range = 3;
+		let range = params.maxRadius;
 
 		const m = mat4.create();
 
 		function getPos() {
-			let r = 1.0 - Math.sin(Math.random() * Math.PI * 0.5) * 10;
-			// r = Math.pow(r, 3.0) * 3;
-			let v = vec3.fromValues(0, 0, r);
-			mat4.identity(m, m);
-			mat4.rotateX(m, m, Math.random() * Math.PI * 2);
-			mat4.rotateY(m, m, Math.random() * Math.PI * 2);
-			mat4.rotateZ(m, m, Math.random() * Math.PI * 2);
-			vec3.transformMat4(v, v, m);
-			v[1] *= 0.2;
-			v[1] += 4;
+			let r = 1.0 - Math.sin(Math.random() * Math.PI * 0.5) * range;
+			let a = Math.random() * Math.PI * 2;
+
+			let v = [Math.cos(a) * r, random(2, 4), Math.sin(a) * r];
 
 			return v;
 		}

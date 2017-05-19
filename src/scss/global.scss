@@ -28,7 +28,8 @@ html {
 
 a {
 	text-decoration: none;
-	color:black;
+	$grey:150;
+	color:rgba($grey, $grey, $grey, 1);
 	font-size: 14px;
 	float:left;
 	clear:left;	

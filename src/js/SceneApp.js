@@ -7,6 +7,7 @@ import ViewSave from './ViewSave';
 import ViewRender from './ViewRender';
 import ViewSim from './ViewSim';
 import ViewFloor from './ViewFloor';
+import ViewMountains from './ViewMountains';
 
 import Sono from 'sono';
 import VIVEUtils from './utils/VIVEUtils';
@@ -83,6 +84,7 @@ class SceneApp extends alfrid.Scene {
 		this._bCopy = new alfrid.BatchCopy();
 
 		this._vFloor = new ViewFloor();
+		this._vMountains = new ViewMountains();
 		// this._bAxis = new alfrid.BatchAxis();
 		// this._bDots = new alfrid.BatchDotsPlane();
 		// this._bBall = new alfrid.BatchBall();
@@ -112,11 +114,13 @@ class SceneApp extends alfrid.Scene {
 	}
 
 	_initSound() {
-		const path = window.location.href.indexOf('localhost') > -1 ? "./assets/audio/bg.mp3" : "./dist/assets/audio/bg.mp3"
+		const path = window.location.href.indexOf('localhost') > -1 ? "./assets/audio/bg.mp3" : "assets/audio/bg.mp3"
+
+		const volume = window.location.href.indexOf('localhost') > -1 ? 0 : 0.1;
 
 		this.music = Sono.load({
 			src: [path],
-			volume: 0.1,
+			volume: volume,
 			loop: true,
 			onComplete: (sound)=> {
 				sound.play();
@@ -220,8 +224,9 @@ class SceneApp extends alfrid.Scene {
 
 
 	renderScene() {
-		GL.clear(0, 0, 0, 0);
+		GL.clear(1, 1, 1, 1);
 		let p = this._count / params.skipCount;
+		this._vMountains.render();
 		this._vRender.render(this._fboTargetPos.getTexture(), this._fboCurrentPos.getTexture(), p, this._fboExtra.getTexture());
 		this._vFloor.render();
 	}

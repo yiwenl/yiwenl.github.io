@@ -12,6 +12,7 @@ uniform mat4 uProjectionMatrix;
 uniform sampler2D texture;
 
 varying vec2 vTextureCoord;
+varying vec2 vScreenUV;
 varying vec3 vNormal;
 varying float vDepth;
 
@@ -21,6 +22,8 @@ void main(void) {
 	vec3 position = aVertexPosition;
 	position.y += h;
     vec4 V = uProjectionMatrix * uViewMatrix * uModelMatrix * vec4(position, 1.0);
+
+    vScreenUV = V.xy / V.w * 0.5 + 0.5;
     gl_Position = V;
     vDepth = V.z/V.w;
     vTextureCoord = aTextureCoord;

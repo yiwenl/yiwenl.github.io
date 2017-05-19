@@ -19,6 +19,7 @@ uniform vec2 uViewport;
 
 varying vec4 vColor;
 varying vec3 vNormal;
+varying vec2 vScreenUV;
 
 float getDepth(float z, float n, float f) {
 	return (2.0 * n) / (f + n - z*(f-n));
@@ -40,7 +41,9 @@ void main(void) {
 	float d 	 = 1.0 - getDepth(V.z/V.w, near, far);
 	g += d * 0.2;
 
-	vColor       = vec4(vec3(g), 1.0);
+	vScreenUV	 = V.xy / V.w * 0.5 + 0.5;
+
+	vColor       = vec4(vec3(g - 0.2), 1.0);
 
 	float distOffset = uViewport.y * uProjectionMatrix[1][1] * (0.01 * uParticleScale) / gl_Position.w;
     gl_PointSize = distOffset * (1.0 + extra.x * 1.0);

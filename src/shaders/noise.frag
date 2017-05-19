@@ -71,7 +71,7 @@ float snoise(float x, float y, float z){
 }
 
 void main(void) {
-	const float noiseScale = 2.0;
+	const float noiseScale = 4.0;
 	float n = snoise(vec3(vTextureCoord * noiseScale, uTime)) * .5 + .5;
     gl_FragColor = vec4(vec3(n), 1.0);
     // gl_FragColor = vec4(vTextureCoord, 0.0, 1.0);

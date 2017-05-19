@@ -4,6 +4,7 @@ import alfrid, { GL } from 'alfrid';
 import vs from 'shaders/floor.vert';
 import fs from 'shaders/floor.frag';
 import NoiseMap from './NoiseMap';
+import Assets from './Assets';
 
 class ViewFloor extends alfrid.View {
 	
@@ -13,7 +14,7 @@ class ViewFloor extends alfrid.View {
 
 
 	_init() {
-		const size = 50;
+		const size = 100;
 		const numSeg = GL.isMobile ? 20 : 50;
 		this.mesh = alfrid.Geom.plane(size, size, numSeg, 'xz');
 
@@ -28,6 +29,8 @@ class ViewFloor extends alfrid.View {
 	render() {
 		this.shader.bind();
 		this._noiseMap.texture.bind(0);
+		this.shader.uniform("colorMap", "uniform1i", 1);
+		Assets.get('color-map').bind(1);
 		this.shader.uniform(params.camera);
 		GL.draw(this.mesh);
 	}

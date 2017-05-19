@@ -1,9 +1,9 @@
 // ViewRender.js
 
-import alfrid from 'alfrid';
+import alfrid, { GL } from 'alfrid';
+import Assets from './Assets';
 const vsRender = require('../shaders/render.vert');
 const fsRender = require('../shaders/render.frag');
-let GL = alfrid.GL;
 
 class ViewRender extends alfrid.View {
 	
@@ -50,6 +50,9 @@ class ViewRender extends alfrid.View {
 
 		this.shader.uniform('textureExtra', 'uniform1i', 2);
 		textureExtra.bind(2);
+
+		this.shader.uniform("colorMap", "uniform1i", 3);
+		Assets.get('color-map').bind(3);
 
 		this.shader.uniform('uViewport', 'vec2', [GL.width, GL.height]);
 		this.shader.uniform('percent', 'float', p);
