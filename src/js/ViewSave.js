@@ -25,23 +25,11 @@ class ViewSave extends alfrid.View {
 		let totalParticles = numParticles * numParticles;
 		console.debug('Total Particles : ', totalParticles);
 		let ux, uy;
-		let range = params.maxRadius;
-
-		const m = mat4.create();
-
-		function getPos() {
-			let r = 1.0 - Math.sin(Math.random() * Math.PI * 0.5) * range;
-			let a = Math.random() * Math.PI * 2;
-
-			let v = [Math.cos(a) * r, random(2, 4), Math.sin(a) * r];
-
-			return v;
-		}
+		let range = 3;
 
 		for(let j = 0; j < numParticles; j++) {
 			for(let i = 0; i < numParticles; i++) {
-				// positions.push([random(-range, range), random(-range, range), random(-range, range)]);
-				positions.push(getPos());
+				positions.push([random(-range, range), random(-range, range), random(-range, range)]);
 
 				ux = i / numParticles * 2.0 - 1.0 + .5 / numParticles;
 				uy = j / numParticles * 2.0 - 1.0 + .5 / numParticles;
@@ -57,24 +45,25 @@ class ViewSave extends alfrid.View {
 
 		this.mesh = new alfrid.Mesh(GL.POINTS);
 		this.mesh.bufferVertex(positions);
+		this.mesh.bufferData(extras, 'aExtra', 3);
 		this.mesh.bufferTexCoord(coords);
 		this.mesh.bufferIndex(indices);
 
-		this.meshExtra = new alfrid.Mesh(GL.POINTS);
-		this.meshExtra.bufferVertex(extras);
-		this.meshExtra.bufferTexCoord(coords);
-		this.meshExtra.bufferIndex(indices);
+		// this.meshExtra = new alfrid.Mesh(GL.POINTS);
+		// this.meshExtra.bufferVertex(extras);
+		// this.meshExtra.bufferTexCoord(coords);
+		// this.meshExtra.bufferIndex(indices);
 	}
 
 
 	render(state = 0) {
 		this.shader.bind();
-		if(state === 0) {
-			GL.draw(this.mesh);	
-		} else if(state === 1) {
-			GL.draw(this.meshExtra);	
-		}
-		
+		// if(state === 0) {
+		// 	GL.draw(this.mesh);	
+		// } else if(state === 1) {
+		// 	GL.draw(this.meshExtra);	
+		// }
+		GL.draw(this.mesh);
 	}
 
 

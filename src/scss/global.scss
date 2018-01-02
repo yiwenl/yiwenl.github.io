@@ -8,8 +8,8 @@ html, body {
 	overflow:hidden;
 	position: static;
 	
-	$gradient0: #FFF;
-	$gradient1: #FFF;
+	$gradient0: #333333;
+	$gradient1: #000000;
 
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6d6d6d+0,000000+100 */
 	background: $gradient0; /* Old browsers */
@@ -19,44 +19,22 @@ html, body {
 }
 
 html {
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+h1,h2,h3,h4,text,p {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-webkit-font-smoothing: antialiased;
-	font-family: 'Lato', sans-serif;
-	font-weight: 300;
-}
-
-
-a {
-	text-decoration: none;
-	$grey:150;
-	color:rgba($grey, $grey, $grey, 1);
+	font-family: 'Open Sans', sans-serif;
+	color:white;
+	user-select: none;
 	font-size: 14px;
-	float:left;
-	clear:left;	
-	padding-top: 5px;
-	padding-bottom: 5px;
-	letter-spacing: 4px;
-	user-select:none;
 
-	.is-mobile & {
-		font-size: 24px;
-	}
-
-	.present-vr & {
-		display: none;
-	}
+	margin: 0;
+	padding: 0;
 }
-
-
-.links {
-	position: fixed;
-	margin:50px;
-	left:0;
-	bottom:0;
-	z-index: 9999;
-}
-
-
 
 .Main-Canvas {
 	width:100%;
@@ -66,11 +44,11 @@ a {
 	position: absolute;
 	user-select:none;
 
-	opacity: 0;
-	transition: opacity .75s ease-out;
+	opacity: 1;
+	transition: opacity .5s ease-out .25s;
 
-	.isLoaded & {
-		opacity: 1;
+	.isLoading & {
+		opacity: 0;
 	}
 }
 
@@ -110,59 +88,77 @@ a {
 }
 
 
-
-
-#enterVr {
-	position: absolute;
-	margin-bottom:60px;
+.info-container {
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
-	bottom:100px;
+	height: 100%;
+	background: rgba(0, 0, 0, .75);
+	z-index: 999;
+}
+
+.outer-container {
+	$padding:15%;
+	width: 50%;
+	height: 100%;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
-	cursor: pointer;
+	flex-direction: column;
 
-    transition: opacity .5s ease-out;
-    display: none;
-    opacity: 0;
-    z-index: 999;
-
-    .hasVR & {
-    	display:block;
-    	opacity: .5;
-
-    	&:hover {
-    		opacity:1;
-    	}
-    }
-
-    p {
-    	margin:0;
-    	padding-top:5px;
-    	font-size:12px;
-    	letter-spacing: 2px;
-    	width: 100%;
-    	text-align: center;
-    	color:white;
-    }
-
-    .present-vr & {
-    	opacity: 0;
-    }
+	padding-left: $padding/2;
+	padding-right: $padding;
+	box-sizing: border-box;
 }
 
-.icon-vr {
-	position: absolute;
-	$iconSize:100px;
+.text-container {
+	span {
+		font-size: 32px;
+		font-weight: bold;
+		line-height: 56px;
+		font-style: italic;
+	}
 
-	left:50%;
+	$colorLinkText: rgba(255, 180, 70, 1);
 
-	width: $iconSize;
-	height: $iconSize;
-	margin-left:-$iconSize/2;
-	
+	a:link {
+		color:$colorLinkText;
+	}
 
-	background: url(../../dist/assets/img/logo_vr.png);
-	background-size: cover;
+	a:visited {
+		color:$colorLinkText;
+	}
+
+	a:hover {
+		color:$colorLinkText;
+	}
+
+	a:active {
+		color:$colorLinkText;
+	}
 }
 
+.links-container {
+	margin-top: 40px;
+
+	/*$colorLink: rgba(180, 180, 180, 1);*/
+	$colorLink: rgba(255, 180, 70, 1);
+
+	a:link {
+		color:$colorLink;
+		text-decoration: none;
+	}
+
+	a:visited {
+		color:$colorLink;
+	}
+
+	a:hover {
+		color:$colorLink;
+	}
+
+	a:active {
+		color:$colorLink;
+	}
+}

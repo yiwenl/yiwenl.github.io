@@ -1,8 +1,6 @@
 // checkExtension.js
 
-'use strict';
-
-const getExtension = require('./getExtension');
+const path = require('path');
 
 module.exports = function checkExtension(mFile, mExtensions) {
 	if(mExtensions.length == 0) {
@@ -21,6 +19,6 @@ module.exports = function checkExtension(mFile, mExtensions) {
 		extensions = mExtensions.concat();
 	}
 
-	const ext = getExtension(mFile);
+	const ext = path.extname(mFile).replace('.', '');
 	return mExtensions.indexOf(ext) > -1;
 }

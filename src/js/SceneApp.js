@@ -1,86 +1,70 @@
 // SceneApp.js
 
 import alfrid, { Scene, GL } from 'alfrid';
-import Assets from './Assets';
-import ViewAddVel from './ViewAddVel';
 import ViewSave from './ViewSave';
 import ViewRender from './ViewRender';
 import ViewSim from './ViewSim';
-import ViewFloor from './ViewFloor';
-import ViewMountains from './ViewMountains';
+import ViewSphere from './ViewSphere';
 
-import Sono from 'sono';
-import VIVEUtils from './utils/VIVEUtils';
-
-const scissor = function(x, y, w, h) {
-	GL.scissor(x, y, w, h);
-	GL.viewport(x, y, w, h);
+window.getAsset = function(id) {
+	return assets.find( (a) => a.id === id).file;
 }
 
 class SceneApp extends alfrid.Scene {
 	constructor() {
 		super();
-
 		GL.enableAlphaBlending();
 
-		const { near, far } = params.camera;
 		this._count = 0;
-		this.camera.setPerspective(Math.PI/2, GL.aspectRatio, near, far)
+		this.camera.setPerspective(Math.PI/2, GL.aspectRatio, .1, 1000);
 		this.orbitalControl.radius.value = 10;
-		this.orbitalControl.rx.value = this.orbitalControl.ry.value = 0.3;
-		this.orbitalControl.rx.limit(0.02, .3);
+		this.orbitalControl.lock(true);
+		// this.orbitalControl.rx.value = this.orbitalControl.ry.value = 0.3;
 
-		this._modelMatrix = mat4.create();
-		
-		this._projectionMatrix = mat4.create();
-		mat4.perspective(this._projectionMatrix, Math.PI/4, GL.aspectRatio, near, far)
+		this.cameraSphere = new alfrid.Camera();
+		this.orbControlSphere = new alfrid.OrbitalControl(this.cameraSphere, window, .01);
+		const easing = 0.1;
+		this.orbControlSphere.rx.easing = easing;
+		this.orbControlSphere.ry.easing = easing;
+		this.orbControlSphere.lockZoom(true);
 
-		if(VIVEUtils.hasVR) {
-			mat4.translate(this._modelMatrix, this._modelMatrix, vec3.fromValues(0, params.floor * 2, 0));
-			GL.enable(GL.SCISSOR_TEST);
-			this.toRender();
 
-			this.resize();
-			this.orbitalControl.lock();
-		} else {
-			mat4.translate(this._modelMatrix, this._modelMatrix, vec3.fromValues(0, params.floor, 0));
-		}
+		this._cameraLight = new alfrid.CameraOrtho();
+		const s = 8;
+		this._cameraLight.ortho(-s, s, -s, s, .5, 50);
+		this._cameraLight.lookAt([0, 10, 0], [0, 0, 0], [0, 0, -1]);
+		this._cameraLight.lookAt([0, 10, 5], [0, 0, 0]);
+		this._shadowMatrix = mat4.create();
+		this._biasMatrix = mat4.fromValues(
+			0.5, 0.0, 0.0, 0.0,
+			0.0, 0.5, 0.0, 0.0,
+			0.0, 0.0, 0.5, 0.0,
+			0.5, 0.5, 0.5, 1.0
+		);
 
-		if(!GL.isMobile) {
-			alfrid.Scheduler.delay(()=> {
-				this._initSound();		
-			}, null, 500);
-			
-		} else {
-			
-		}
+		mat4.multiply(this._shadowMatrix, this._cameraLight.projection, this._cameraLight.viewMatrix);
+		mat4.multiply(this._shadowMatrix, this._biasMatrix, this._shadowMatrix);
 
-		document.body.classList.add('isLoaded');
-		
+		this.modelMatrix = mat4.create();
+		this.resize();
 	}
 
 	_initTextures() {
 		console.log('init textures');
-		console.log('Float :', GL.FLOAT, 'Half Float :', GL.HALF_FLOAT);
-
-		const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
 
 		//	FBOS
 		const numParticles = params.numParticles;
 		const o = {
 			minFilter:GL.NEAREST,
 			magFilter:GL.NEAREST,
-			type:iOS ? GL.HALF_FLOAT : GL.FLOAT
+			type:GL.FLOAT
 		};
 
-		this._fboCurrentPos = new alfrid.FrameBuffer(numParticles, numParticles, o);
-		this._fboTargetPos  = new alfrid.FrameBuffer(numParticles, numParticles, o);
-		this._fboCurrentVel = new alfrid.FrameBuffer(numParticles, numParticles, o);
-		this._fboTargetVel  = new alfrid.FrameBuffer(numParticles, numParticles, o);
-		this._fboExtra  	= new alfrid.FrameBuffer(numParticles, numParticles, o);
+		this._fboCurrent  	= new alfrid.FrameBuffer(numParticles, numParticles, o, true);
+		this._fboTarget  	= new alfrid.FrameBuffer(numParticles, numParticles, o, true);
 
-		this.resize();
+		this._fboMap 		= new alfrid.FrameBuffer(GL.width, GL.height, {minFilter:GL.LINEAR, magFilter:GL.LINEAR});
+		this._fboShadow 	= new alfrid.FrameBuffer(1024, 1024, {minFilter:GL.LINEAR, magFilter:GL.LINEAR});
 	}
 
 
@@ -89,162 +73,125 @@ class SceneApp extends alfrid.Scene {
 		
 		//	helpers
 		this._bCopy = new alfrid.BatchCopy();
-
-		this._vFloor = new ViewFloor();
-		this._vMountains = new ViewMountains();
-		// this._bAxis = new alfrid.BatchAxis();
-		// this._bDots = new alfrid.BatchDotsPlane();
-		// this._bBall = new alfrid.BatchBall();
+		this._bAxis = new alfrid.BatchAxis();
+		this._bDots = new alfrid.BatchDotsPlane();
+		this._bBall = new alfrid.BatchBall();
 
 
 		//	views
-		this._vAddVel = new ViewAddVel();
 		this._vRender = new ViewRender();
 		this._vSim 	  = new ViewSim();
 
 		this._vSave = new ViewSave();
 		GL.setMatrices(this.cameraOrtho);
 
-		this._fboCurrentPos.bind();
-		this._vSave.render(0);
-		this._fboCurrentPos.unbind();
 
-		this._fboExtra.bind();
-		this._vSave.render(1);
-		this._fboExtra.unbind();
+		this._fboCurrent.bind();
+		GL.clear(0, 0, 0, 0);
+		this._vSave.render();
+		this._fboCurrent.unbind();
 
-		this._fboTargetPos.bind();
-		this._bCopy.draw(this._fboCurrentPos.getTexture());
-		this._fboTargetPos.unbind();
+		this._fboTarget.bind();
+		GL.clear(0, 0, 0, 0);
+		this._vSave.render();
+		this._fboTarget.unbind();
+
+		GL.setMatrices(this.camera);
+
+
+		this._vSphere = new ViewSphere();
+	}
+
+	_updateShadow() {
+		let p = this._count / params.skipCount;
+
+		this._fboShadow.bind();
+		GL.clear(0, 0, 0, 0);
+		GL.setMatrices(this._cameraLight);
+		this._vRender.renderShadow(this._fboTarget.getTexture(0), this._fboCurrent.getTexture(0), p, this._fboCurrent.getTexture(2), this._fboCurrent.getTexture(3));
+		this._fboShadow.unbind();
 
 		GL.setMatrices(this.camera);
 	}
 
-	_initSound() {
-		const path = window.location.href.indexOf('localhost') > -1 ? "./assets/audio/bg.mp3" : "assets/audio/bg.mp3"
-		const volume = window.location.href.indexOf('localhost') > -1 ? 0 : 0.1;
-
-		this.music = Sono.load({
-			src: [path],
-			volume: volume,
-			loop: true,
-			onComplete: (sound)=> {
-				sound.play();
-				document.body.classList.add('isLoaded');
-			}
-		});
-	}
-
 
 	updateFbo() {
-		//	Update Velocity : bind target Velocity, render simulation with current velocity / current position
-		this._fboTargetVel.bind();
+		this._fboTarget.bind();
 		GL.clear(0, 0, 0, 1);
-		this._vSim.render(this._fboCurrentVel.getTexture(), this._fboCurrentPos.getTexture(), this._fboExtra.getTexture());
-		this._fboTargetVel.unbind();
+		GL.setMatrices(this.camera);
+		this._vSim.render(
+			this._fboCurrent.getTexture(1), 
+			this._fboCurrent.getTexture(0), 
+			this._fboCurrent.getTexture(2),
+			this._fboMap.getTexture()
+			);
+		this._fboTarget.unbind();
 
 
-		//	Update position : bind target Position, render addVel with current position / target velocity;
-		this._fboTargetPos.bind();
-		GL.clear(0, 0, 0, 1);
-		this._vAddVel.render(this._fboCurrentPos.getTexture(), this._fboTargetVel.getTexture());
-		this._fboTargetPos.unbind();
-
-		//	SWAPPING : PING PONG
-		let tmpVel          = this._fboCurrentVel;
-		this._fboCurrentVel = this._fboTargetVel;
-		this._fboTargetVel  = tmpVel;
-
-		let tmpPos          = this._fboCurrentPos;
-		this._fboCurrentPos = this._fboTargetPos;
-		this._fboTargetPos  = tmpPos;
+		let tmp          = this._fboCurrent;
+		this._fboCurrent = this._fboTarget;
+		this._fboTarget  = tmp;
 
 	}
 
 
 	render() {
-		if(!VIVEUtils.hasVR) { this.toRender(); }
-	}
+
+		//	update background map
+		this._fboMap.bind();
+		GL.clear(0, 0, 0, 0);
+		GL.rotate(this.cameraSphere.matrix);
+		this._vSphere.render();
+		this._fboMap.unbind();
 
 
-	toRender() {
+		GL.rotate(this.modelMatrix);
+
+
+		//	update particles
 		this._count ++;
 		if(this._count % params.skipCount == 0) {
 			this._count = 0;
-			GL.disable(GL.SCISSOR_TEST);
 			this.updateFbo();
-			GL.enable(GL.SCISSOR_TEST);
 		}
 
-		if(VIVEUtils.hasVR) {	VIVEUtils.vrDisplay.requestAnimationFrame(()=>this.toRender());	}		
-
-
-		if(VIVEUtils.hasVR && VIVEUtils.isPresenting ) {
-			this.orbitalControl.lock();
-			
-			VIVEUtils.getFrameData();
-			const w2 = GL.width/2;
-			VIVEUtils.setCamera(this.camera, 'left');
-
-			scissor(0, 0, w2, GL.height);
-			GL.setMatrices(this.camera);
-			GL.rotate(this._modelMatrix);
-			this.renderScene();
-
-
-			VIVEUtils.setCamera(this.camera, 'right');
-			scissor(w2, 0, w2, GL.height);
-			GL.setMatrices(this.camera);
-			GL.rotate(this._modelMatrix);
-			this.renderScene();
-
-			VIVEUtils.submitFrame();
-
-			// //	re-render whole
-			if(!GL.isMobile) {
-				scissor(0, 0, GL.width, GL.height);
-
-				GL.clear(0, 0, 0, 0);
-				mat4.copy(this.cameraVR.projection, this.camera.projection);
-
-				GL.setMatrices(this.cameraVR);
-				GL.rotate(this._modelMatrix);
-				this.renderScene();	
-			}
-
-		} else {
-			scissor(0, 0, GL.width, GL.height);
-			if(VIVEUtils.hasVR && GL.isMobile) {
-				VIVEUtils.getFrameData();
-				VIVEUtils.setCamera(this.camera, 'left');
-				mat4.copy(this.camera._projection, this._projectionMatrix);
-			} else {
-				this.orbitalControl.lock(false);
-				this.orbitalControl.lockZoom(true);
-			}
-
-			GL.setMatrices(this.camera);
-			GL.rotate(this._modelMatrix);
-			this.renderScene();
-		}
-	}
-
-
-	renderScene() {
-		GL.clear(1, 1, 1, 1);
 		let p = this._count / params.skipCount;
-		this._vMountains.render();
-		this._vRender.render(this._fboTargetPos.getTexture(), this._fboCurrentPos.getTexture(), p, this._fboExtra.getTexture());
-		this._vFloor.render();
+
+
+		//	update shadow map
+		this._updateShadow();
+
+		GL.clear(0, 0, 0, 0);
+		GL.disable(GL.DEPTH_TEST);
+		this._bCopy.draw(this._fboMap.getTexture());
+		GL.enable(GL.DEPTH_TEST);
+
+
+		GL.rotate(this.modelMatrix);
+		this._vRender.render(
+			this._fboTarget.getTexture(0), 
+			this._fboCurrent.getTexture(0), 
+			p, 
+			this._fboCurrent.getTexture(2), 
+			this._fboCurrent.getTexture(3),
+			this._shadowMatrix,
+			this._fboShadow.getDepthTexture()
+		);
+
+
+		// const s = 200;
+		// GL.viewport(0, 0, s, s);
+		// this._bCopy.draw(this._fboShadow.getDepthTexture());
+
+		// GL.viewport(s, 0, s, s);
+		// this._bCopy.draw(this._fboTarget.getTexture());
 	}
 
 
 	resize() {
-		let scale = VIVEUtils.hasVR ? 1 : 1;
-		if(GL.isMobile) {
-			scale = 1;
-		}
+		const scale = 1;
 		GL.setSize(window.innerWidth * scale, window.innerHeight * scale);
+		this._fboMap = new alfrid.FrameBuffer(GL.width, GL.height, {minFilter:GL.LINEAR, magFilter:GL.LINEAR});
 		this.camera.setAspectRatio(GL.aspectRatio);
 	}
 }

@@ -1,14 +1,11 @@
-// shader-watcher.js
-
-'use strict';
+// test-shader.js
 
 const fs                = require('fs');
 const path              = require('path');
-const findFolder        = require('./find-folder');
-const watcher           = require('./watch');
+const findFolder        = require('./find-folder-promise');
 const copyFile          = require('./copy-file');
-const checkExtension    = require('./checkExtension');
 
+const FILE_PATH         = 'src/js/ViewObjModel.js';
 const PATH_SRC          = './src';
 const TEMPLATE_VERTEX   = './tasks/basic.vert';
 const TEMPLATE_FRAGMENT = './tasks/copy.frag';
@@ -16,27 +13,10 @@ const regShader         = /shaders\/.+\.(vert|frag)/g;
 
 let shaderPath;
 
-findFolder(PATH_SRC, 'shaders', (mPath)=> {
-	shaderPath = mPath;
-	startWatch();
-});
+findFolder(PATH_SRC, 'shaders').then((path)=> {
+	shaderPath = path;
 
-
-let watcherViews = watcher([PATH_SRC]);
-
-function startWatch() {
-	watcherViews.on('all',(event, file) => {
-		if(file.indexOf('.DS_Store') > -1) return;
-		if(!checkExtension(file, ['js'])) return;
-		console.log('Event:', event, 'file :' , file);
-		if(event !== 'add' && event !== 'change') return;
-
-		checkFile(file);
-	});
-}
-
-const checkFile = (file) => {
-	getShaderImports(file).then(shaderImports => {
+	getShaderImports(FILE_PATH).then(shaderImports => {
 		return shaderImports.reduce((sequence, shaderName)=> {
 			return sequence.then(()=>{
 				return isShaderExist(shaderName);
@@ -50,7 +30,7 @@ const checkFile = (file) => {
 	}).catch((err)=> {
 		console.log('Error:', err);
 	});
-}
+});
 
 
 const getShaderImports = (mPath) => new Promise((resolve, reject) => {

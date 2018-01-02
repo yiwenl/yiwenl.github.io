@@ -1,14 +1,19 @@
 // sim.frag
 
-#define SHADER_NAME SIMPLE_TEXTURE
-
+#extension GL_EXT_draw_buffers : require 
 precision highp float;
+
 varying vec2 vTextureCoord;
 uniform sampler2D textureVel;
 uniform sampler2D texturePos;
 uniform sampler2D textureExtra;
+uniform sampler2D textureMap;
 uniform float time;
 uniform float maxRadius;
+
+uniform mat4 uModelMatrix;
+uniform mat4 uViewMatrix;
+uniform mat4 uProjectionMatrix;
 
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0;  }
 
@@ -113,30 +118,58 @@ vec3 curlNoise( vec3 p ){
 
 }
 
+vec2 rotate(vec2 v, float a) {
+	float s = sin(a);
+	float c = cos(a);
+	mat2 m = mat2(c, -s, s, c);
+	return m * v;
+}
+
+const float PI = 3.141592653;
+
 void main(void) {
 	vec3 pos        = texture2D(texturePos, vTextureCoord).rgb;
 	vec3 vel        = texture2D(textureVel, vTextureCoord).rgb;
 	vec3 extra      = texture2D(textureExtra, vTextureCoord).rgb;
-	float posOffset = mix(1.0, extra.r, 0.65) * .12;
-	vec3 acc        = curlNoise(pos * posOffset + time * .2);
 	
-	vel += acc * mix(extra.g, 1.0, .37) * .005;
+	vec4 screenpos  = uProjectionMatrix * uViewMatrix * uModelMatrix * vec4(pos, 1.0); 
+	screenpos       /= screenpos.w;
+	vec2 uv         = screenpos.xy * .5 + .5;
+	vec3 colorMap   = texture2D(textureMap, uv).rgb;
+	float envOffset = (1.0 - colorMap.r);
+
+
+	float posOffset = mix(extra.r, 1.0, 0.75) * (.2 + envOffset * .03);
+	vec3 acc        = curlNoise(pos * posOffset + time * .3);
+	float speed     = 1.0 + envOffset * 2.0;
+
+	//	rotate
+	vec2 dir = normalize(pos.xz);
+	dir      = rotate(dir, PI * 0.6);
+	acc.xz   += dir * mix(envOffset, 1.0, .25) * 0.75;
+
+	vel             += acc * .002 * speed;
 
 	float dist = length(pos);
-	if(dist > maxRadius) {
-		float f = (dist - maxRadius) * .002;
+	float radius = maxRadius + envOffset * 1.0;
+	if(dist > radius) {
+		float f = pow(2.0, (dist - radius) * 1.5) * (0.005 - envOffset * 0.002) * 0.1;
 		vel -= normalize(pos) * f;
 	}
 
-	const float decrease = .967;
+	float decrease = .96 - envOffset * 0.03;
 	vel *= decrease;
 
 
-	dist = pos.y;
-	const float minY = 3.0;
-	if(pos.y < minY) {
-		vel.y += (minY - pos.y) * 0.01;
-	}
 
-	gl_FragColor = vec4(vel, 1.0);
+
+	pos += vel;
+
+
+
+	gl_FragData[0] = vec4(pos, 1.0);
+	gl_FragData[1] = vec4(vel, 1.0);
+	gl_FragData[2] = vec4(extra, 1.0);
+	gl_FragData[3] = vec4(colorMap, 1.0);
+	// gl_FragData[3] = vec4(screenpos.xyz, 1.0);
 }

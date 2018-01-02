@@ -3,7 +3,6 @@
 'use strict';
 
 const fs           = require('fs-extra');
-const path           = require('path');
 const watcher      = require('./watch');
 const getExtension = require('./getExtension');
 const getFileName = require('./getFileName');
@@ -112,9 +111,7 @@ function getAssets() {
 
 	for(let i=0; i<ASSETS_PATH.length; i++) {
 		let dir = ASSETS_PATH[i];
-		fs.ensureDir(dir,()=> {
-			getAssetsInDir(dir, onFolder);	
-		});
+		getAssetsInDir(dir, onFolder);
 	}
 }
 
@@ -151,6 +148,7 @@ function generateAssetList() {
 	strList = strList.replace('[', '[\n\t');
 	strList = strList.replace(']', '\n]');
 	strList = strList.split('},{').join('},\n\t{');
+	console.log(strList);
 
 	fs.readFile(TEMPLATE_PATH, 'utf8', (err, str) => {
 		if(err) {
@@ -173,11 +171,28 @@ function loop() {
 	}
 }
 
-setInterval(loop, 500);
-const watcherAssets = watcher([ ASSETS_PATH ]);
 
-watcherAssets.on('all',(event, file) => {
-	console.log('Event:',event);
-	if(file.indexOf('.DS_Store') > -1) return;
-	needUpdate = true;
-});
+
+const dirPaths = ASSETS_PATH.concat();
+dirPaths.reduce((sequence, dirPath)=> {
+	return sequence.then(()=>{
+		console.log('dirPath', dirPath);
+		return fs.ensureDir(dirPath);
+	}).then(()=> {
+		startWatch();
+	}).catch((err)=> {
+		console.log('Error :', err);
+	})
+}, Promise.resolve());
+
+
+const startWatch = () => {
+	setInterval(loop, 500);
+	const watcherAssets = watcher([ ASSETS_PATH ]);
+
+	watcherAssets.on('all',(event, file) => {
+		console.log('Event:',event);
+		if(file.indexOf('.DS_Store') > -1) return;
+		needUpdate = true;
+	});
+}
