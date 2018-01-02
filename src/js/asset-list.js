@@ -1,6 +1,6 @@
 
 const assetsToLoad = [
-	{"id":"sphere","url":"dist/assets/obj/sphere.obj","type":"text"}
+	{"id":"sphere","url":"assets/obj/sphere.obj","type":"text"}
 ];
 
 
