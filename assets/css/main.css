@@ -1,0 +1,122 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: static;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6d6d6d+0,000000+100 */
+  background: #333333;
+  /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #333333 0%, #000000 100%);
+  /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover, #333333 0%, #000000 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #333333 0%, #000000 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+
+html {
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  text-size-adjust: none; }
+
+h1, h2, h3, h4, text, p {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-webkit-font-smoothing: antialiased;
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  user-select: none;
+  font-size: 14px;
+  margin: 0;
+  padding: 0; }
+
+.Main-Canvas {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  user-select: none;
+  opacity: 1;
+  transition: opacity .5s ease-out .25s; }
+  .isLoading .Main-Canvas {
+    opacity: 0; }
+
+.Message {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  top: calc(50% - 50px);
+  text-align: center;
+  letter-spacing: 11px;
+  color: white;
+  opacity: 0;
+  transition: opacity .5s ease-out, letter-spacing .5s ease-out; }
+  .isLoading .Message {
+    letter-spacing: 10px;
+    opacity: 1; }
+
+.Loading-Bar {
+  position: absolute;
+  z-index: 998;
+  width: 0%;
+  height: 1px;
+  top: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: width .5s ease-out, opacity .5s ease-out; }
+  .isLoading .Loading-Bar {
+    opacity: 1; }
+
+.info-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999; }
+
+.outer-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 7.5%;
+  padding-right: 15%;
+  box-sizing: border-box; }
+
+.text-container span {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 56px;
+  font-style: italic; }
+
+.text-container a:link {
+  color: #ffb446; }
+
+.text-container a:visited {
+  color: #ffb446; }
+
+.text-container a:hover {
+  color: #ffb446; }
+
+.text-container a:active {
+  color: #ffb446; }
+
+.links-container {
+  margin-top: 40px;
+  /*$colorLink: rgba(180, 180, 180, 1);*/ }
+  .links-container a:link {
+    color: #ffb446;
+    text-decoration: none; }
+  .links-container a:visited {
+    color: #ffb446; }
+  .links-container a:hover {
+    color: #ffb446; }
+  .links-container a:active {
+    color: #ffb446; }
+
+/*# sourceMappingURL=main.css.map*/
