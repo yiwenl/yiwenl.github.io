@@ -96,6 +96,7 @@ h1,h2,h3,h4,text,p {
 	height: 100%;
 	background: rgba(0, 0, 0, .75);
 	z-index: 999;
+	letter-spacing: 0.5px;
 }
 
 .outer-container {
@@ -118,6 +119,7 @@ h1,h2,h3,h4,text,p {
 		font-weight: bold;
 		line-height: 56px;
 		font-style: italic;
+		margin-left: -3px;
 	}
 
 	$colorLinkText: rgba(255, 180, 70, 1);
