@@ -2,9 +2,6 @@ import styled from "styled-components";
 import SiteData from "../../model/SiteData";
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
   background: rgba(0, 255, 0, 0.1);
 `;
 

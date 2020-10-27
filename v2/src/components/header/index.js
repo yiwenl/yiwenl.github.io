@@ -9,11 +9,11 @@ const Container = styled.div`
 `;
 
 function Header() {
-  const { projects } = SiteData;
+  const { about, projects } = SiteData;
 
   return (
     <Container>
-      <h3>Header</h3>
+      <h3>{about.name}</h3>
       <ul>
         <Link to="/">
           <li>Home</li>
@@ -21,13 +21,6 @@ function Header() {
         <Link to="/about">
           <li>About</li>
         </Link>
-        {projects.map(({ id, title }) => {
-          return (
-            <Link key={id} to={`/project/${id}`}>
-              <li>{title}</li>
-            </Link>
-          );
-        })}
       </ul>
     </Container>
   );

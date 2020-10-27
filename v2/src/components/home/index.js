@@ -1,16 +1,20 @@
 import styled from "styled-components";
+import SiteData from "../../model/SiteData";
+import ProjectLink from "./ProjectLink";
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
-  position: fixed;
-  background: rgba(255, 0, 0, 0.1);
+  background: rgba(255, 0, 0, 0.5);
 `;
 
 function Home() {
+  const { projects } = SiteData;
+
   return (
     <Container>
-      <h1>Home Page</h1>
+      {projects.map((project) => {
+        return <ProjectLink key={project.id} {...project} />;
+      })}
     </Container>
   );
 }
