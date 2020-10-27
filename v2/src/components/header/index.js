@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import SiteData from "../../model/SiteData";
 
 const Container = styled.div`
   width: 100%;
@@ -8,6 +9,8 @@ const Container = styled.div`
 `;
 
 function Header() {
+  const { projects } = SiteData;
+
   return (
     <Container>
       <h3>Header</h3>
@@ -18,12 +21,13 @@ function Header() {
         <Link to="/about">
           <li>About</li>
         </Link>
-        <Link to="/project/1">
-          <li>Project 1</li>
-        </Link>
-        <Link to="/project/2">
-          <li>Project 2</li>
-        </Link>
+        {projects.map(({ id, title }) => {
+          return (
+            <Link key={id} to={`/project/${id}`}>
+              <li>{title}</li>
+            </Link>
+          );
+        })}
       </ul>
     </Container>
   );
