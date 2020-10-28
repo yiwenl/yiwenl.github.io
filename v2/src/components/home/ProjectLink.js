@@ -8,6 +8,8 @@ const Container = styled.div`
   background: rgba(0, 255, 0, 0.5);
   float: left;
   cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid white;
 `;
 
 const TextContainer = styled.div`
@@ -15,6 +17,14 @@ const TextContainer = styled.div`
   color: white;
   z-index: 10;
   bottom: 0;
+  font-size: 2rem;
+  width: 100%;
+  height: 3rem;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
 `;
 
 const Img = styled.div`
@@ -24,9 +34,6 @@ const Img = styled.div`
   background: url(${(props) => props.src});
   background-size: cover;
   background-position: center;
-
-  box-sizing: border-box;
-  border: 1px solid white;
 `;
 
 const ProjectLink = ({ id, cover, title, subtitle }) => {
@@ -35,7 +42,7 @@ const ProjectLink = ({ id, cover, title, subtitle }) => {
     <Container>
       <Link to={`/project/${id}`}>
         <div>
-          <TextContainer>Project : {id}</TextContainer>
+          <TextContainer>{title}</TextContainer>
           <Img src={src}></Img>
         </div>
       </Link>

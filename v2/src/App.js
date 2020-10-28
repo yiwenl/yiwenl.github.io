@@ -10,6 +10,11 @@ import Project from "./components/project";
 const Container = styled.div`
   max-width: 1215px;
   margin: 0 auto;
+  background: white;
+  padding: 0 20px;
+
+  display: block;
+  overflow: auto;
 `;
 
 function App() {

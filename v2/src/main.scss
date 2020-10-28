@@ -1,6 +1,14 @@
+// fonts
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,400;1,500&display=swap");
+
+// main styles
 html,
 body {
-  background: white;
+  background: #ddd;
+
+  font-family: "Roboto";
+  font-weight: 300;
+  font-style: normal;
 }
 
 * {
