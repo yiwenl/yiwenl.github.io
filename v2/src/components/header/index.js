@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import SiteData from "../../model/SiteData";
-import "./header.scss";
 
 const Container = styled.div`
   width: 100%;

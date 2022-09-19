@@ -8,10 +8,10 @@ import About from "./components/about";
 import Project from "./components/project";
 
 const Container = styled.div`
-  max-width: 1215px;
+  max-width: 1024px;
   margin: 0 auto;
   background: white;
-  padding: 0 20px;
+  padding: 0 50px;
 
   display: block;
   overflow: auto;

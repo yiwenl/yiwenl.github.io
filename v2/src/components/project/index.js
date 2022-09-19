@@ -7,7 +7,7 @@ const Container = styled.div`
 
 function Project({ match }) {
   const { id } = match.params;
-  const projectData = SiteData.projects.filter((p) => p.id === id)[0];
+  const projectData = SiteData.projects.find((p) => p.id === id);
   console.log(projectData);
 
   return (
