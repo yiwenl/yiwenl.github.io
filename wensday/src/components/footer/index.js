@@ -15,7 +15,9 @@ const Footer = () => {
         >
           <p>Projects</p>
         </NavLink>
-        <p>Sketches</p>
+        <a href="https://yiwenl.github.io/Sketches" target="_blank">
+          <p>Sketches</p>
+        </a>
         <NavLink
           to="generative"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
