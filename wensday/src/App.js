@@ -1,5 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
+
+// Router
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // components
 import Header from "./components/header";
@@ -9,14 +11,18 @@ import Generative from "./components/generative";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Header />
-        {/* <Landing /> */}
-        <Generative />
-        <Footer />
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Header />
+          <Routes>
+            <Route path="/" exact element={<Landing />} />
+            <Route path="/generative" exact element={<Generative />} />
+          </Routes>
+          <Footer />
+        </header>
+      </div>
+    </Router>
   );
 }
 

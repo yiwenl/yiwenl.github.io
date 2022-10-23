@@ -1,12 +1,27 @@
 import "./style.css";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
+  let activeStyle = {
+    opacity: 0.2,
+  };
+
   return (
     <div className="footer">
       <div className="main-container">
-        <p>Projects</p>
+        <NavLink
+          to="/"
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        >
+          <p>Projects</p>
+        </NavLink>
         <p>Sketches</p>
-        <p>Generative</p>
+        <NavLink
+          to="generative"
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        >
+          <p className="last-child">Generative</p>
+        </NavLink>
       </div>
       <div className="link-container">
         <div className="social-container">

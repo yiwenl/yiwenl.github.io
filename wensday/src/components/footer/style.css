@@ -22,7 +22,7 @@
   float: left;
   margin-right: 40px;
 }
-.main-container p:last-child {
+.footer .last-child {
   float: left;
   margin-right: 0px;
 }

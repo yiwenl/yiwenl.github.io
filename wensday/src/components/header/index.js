@@ -1,6 +1,11 @@
 import "./style.css";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  let activeStyle = {
+    opacity: 0.2,
+  };
+
   return (
     <div className="header">
       <div className="container-left">
@@ -11,7 +16,25 @@ const Header = () => {
         <p>CREATIVE CODER</p>
       </div>
       <div className="container-right">
-        PROJECTS // SKETCHES // GENERATIVE // INFO
+        <NavLink
+          to="/"
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        >
+          <p>Projects</p>
+        </NavLink>
+        <p>&nbsp;//&nbsp;</p>
+        <a href="https://yiwenl.github.io/Sketches" target="_blank">
+          <p>Sketches</p>
+        </a>
+        <p>&nbsp;//&nbsp;</p>
+        <NavLink
+          to="generative"
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        >
+          <p>Generative</p>
+        </NavLink>
+        <p>&nbsp;//&nbsp;</p>
+        <p>info</p>
       </div>
     </div>
   );

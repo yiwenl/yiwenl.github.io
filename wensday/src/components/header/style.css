@@ -24,5 +24,11 @@
 }
 
 .container-right {
+  box-sizing: border-box;
   float: right;
+  display: block;
+}
+
+.container-right * {
+  float: left;
 }
