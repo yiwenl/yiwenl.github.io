@@ -1,0 +1,29 @@
+.landing {
+  width: 100vw;
+  height: 100vh;
+  /* background-color: rgba(255, 0, 0, 0.2); */
+  box-sizing: border-box;
+  resize: horizontal;
+
+  /* aspect-ratio: 16 / 9; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* font-family: "Inconsolata", monospace; */
+}
+
+.landing p {
+  width: 693px;
+  font-family: "Italiana", serif;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 56px;
+  line-height: 100%;
+  /* or 56px */
+
+  text-align: center;
+
+  color: #000;
+  /* background-color: rgba(0, 255, 0, 0.2); */
+}

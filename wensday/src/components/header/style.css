@@ -1,0 +1,28 @@
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  color: #000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  box-sizing: border-box;
+
+  text-transform: uppercase;
+
+  font-family: "Inconsolata", monospace;
+  padding: 16px 40px;
+}
+
+.container-left {
+  float: left;
+}
+
+.container-left p {
+  float: left;
+  padding-right: 200px;
+}
+
+.container-right {
+  float: right;
+}
