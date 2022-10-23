@@ -5,13 +5,15 @@ import "./App.css";
 import Header from "./components/header";
 import Landing from "./components/landing";
 import Footer from "./components/footer";
+import Generative from "./components/generative";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Header />
-        <Landing />
+        {/* <Landing /> */}
+        <Generative />
         <Footer />
       </header>
     </div>

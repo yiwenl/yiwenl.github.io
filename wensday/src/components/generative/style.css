@@ -1,0 +1,101 @@
+.generative {
+  width: 100%;
+}
+
+.title-container {
+  width: 100%;
+  text-align: center;
+  height: 397px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.generative-container {
+  box-sizing: border-box;
+  width: 1480px;
+  margin: 0 auto;
+}
+
+.title-container p {
+  font-family: "Italiana", serif;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 56px;
+  line-height: 100%;
+
+  text-align: center;
+}
+
+.column-container {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.row-container {
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.big-container {
+  float: left;
+  width: 740px;
+  height: 740px;
+  border: solid 1px #eee;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-container {
+  float: left;
+  width: 740px;
+  height: 740px;
+  box-sizing: border-box;
+
+  display: block;
+}
+
+.small-container {
+  float: left;
+  width: 370px;
+  height: 370px;
+  border: solid 1px #eee;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.proj-container {
+  width: 60%;
+  height: 60%;
+}
+
+.proj-container img {
+  height: 100%;
+}
+
+.proj-container p {
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+  margin-top: 45px;
+  /* or 17px */
+
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #000;
+}
+
+.small-container .proj-container p {
+  margin-top: 26px;
+}

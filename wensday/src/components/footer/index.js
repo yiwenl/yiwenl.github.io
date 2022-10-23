@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="main-container">
         <p>Projects</p>
         <p>Sketches</p>
-        <p>NFTs</p>
+        <p>Generative</p>
       </div>
       <div className="link-container">
         <div className="social-container">

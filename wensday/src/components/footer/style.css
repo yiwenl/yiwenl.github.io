@@ -1,7 +1,7 @@
 .footer {
   width: 100vw;
   height: 337px;
-  background: rgba(0, 0, 0, 0.05);
+  /* background: rgba(0, 0, 0, 0.05); */
   position: relative;
 
   display: flex;
