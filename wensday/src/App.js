@@ -4,6 +4,7 @@ import "./App.css";
 // components
 import Header from "./components/header";
 import Landing from "./components/landing";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <header className="App-header">
         <Header />
         <Landing />
+        <Footer />
       </header>
     </div>
   );

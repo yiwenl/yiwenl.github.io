@@ -1,0 +1,59 @@
+.footer {
+  width: 100vw;
+  height: 337px;
+  background: rgba(0, 0, 0, 0.05);
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-container {
+  font-family: "Italiana", serif;
+  box-sizing: border-box;
+  font-weight: 100;
+  font-size: 56px;
+  line-height: 120%;
+  text-align: center;
+}
+
+.main-container p {
+  float: left;
+  margin-right: 40px;
+}
+.main-container p:last-child {
+  float: left;
+  margin-right: 0px;
+}
+
+.link-container {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  box-sizing: border-box;
+
+  padding: 16px 40px;
+
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-transform: uppercase;
+}
+
+.link-container .social-container {
+  float: left;
+}
+
+.link-container .social-container p {
+  float: left;
+  margin-right: 40px;
+}
+
+.link-container .email-container {
+  float: right;
+}
