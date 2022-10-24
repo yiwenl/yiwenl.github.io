@@ -1,4 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Inconsolata&family=Italiana&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+
+@font-face {
+  font-family: "title";
+  src: url("./fonts/title.woff2") format("woff2"),
+    url("./fonts/title.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "description";
+  src: url("./fonts/description.woff2") format("woff2"),
+    url("./fonts/description.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   margin: 0;

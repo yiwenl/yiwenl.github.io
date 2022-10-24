@@ -14,6 +14,7 @@
   padding: 16px 40px;
   color: white;
   mix-blend-mode: difference;
+  z-index: 99;
 }
 
 .container-left {
