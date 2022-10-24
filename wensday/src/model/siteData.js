@@ -5,6 +5,17 @@ export default {
       title: "Data Face Print",
       subtitle: "Experiment With Google",
       cover: "projects/cover_datafaceprint.jpg",
+      descrpition: "Data Face Print",
+      medias: [
+        {
+          type: "image",
+          url: "projects/cover_sibos.jpg",
+        },
+        {
+          type: "vimeo",
+          url: "https://vimeo.com/387633341",
+        },
+      ],
     },
     {
       id: "datafaceprint2",

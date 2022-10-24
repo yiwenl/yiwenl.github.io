@@ -1,7 +1,7 @@
 import "./App.css";
 
 // Router
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import ScrollToTop from "./ScrollToTop";
 
@@ -11,6 +11,7 @@ import Landing from "./components/landing";
 import Footer from "./components/footer";
 import Generative from "./components/generative";
 import Info from "./components/info";
+import Project from "./components/project";
 
 function App() {
   return (
@@ -20,11 +21,12 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Header />
-          <Routes>
-            <Route path="/" exact element={<Landing />} />
-            <Route path="/generative" exact element={<Generative />} />
-            <Route path="/info" exact element={<Info />} />
-          </Routes>
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/generative" exact component={Generative} />
+            <Route path="/project/:id" exact component={Project} />
+            <Route path="/info" exact component={Info} />
+          </Switch>
           <Footer />
         </header>
       </div>
