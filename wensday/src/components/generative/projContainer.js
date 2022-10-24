@@ -8,7 +8,7 @@ const ProjContainer = ({ path, url, title, editions }) => {
   return (
     <div className="proj-container">
       <a href={`${url}`} target="_blank">
-        <img src={`${process.env.PUBLIC_URL}/assets/${path}`}></img>
+        <img src={`${process.env.PUBLIC_URL}/assets/generative/${path}`}></img>
       </a>
       <a href={`${url}`} target="_blank">
         <p>{title}</p>

@@ -1,4 +1,18 @@
 export default {
+  projects: [
+    {
+      id: "datafaceprint",
+      title: "Data Face Print",
+      subtitle: "Experiment With Google",
+      cover: "projects/cover_datafaceprint.jpg",
+    },
+    {
+      id: "datafaceprint2",
+      title: "Data Face Print",
+      subtitle: "Experiment With Google",
+      cover: "projects/cover_datafaceprint.jpg",
+    },
+  ],
   generatives: {
     fireWithin: {
       title: "The Fire Within",

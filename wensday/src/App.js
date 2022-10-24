@@ -3,6 +3,8 @@ import "./App.css";
 // Router
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import ScrollToTop from "./ScrollToTop";
+
 // components
 import Header from "./components/header";
 import Landing from "./components/landing";
@@ -13,6 +15,8 @@ import Info from "./components/info";
 function App() {
   return (
     <Router>
+      <ScrollToTop />
+
       <div className="App">
         <header className="App-header">
           <Header />

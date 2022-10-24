@@ -1,4 +1,8 @@
 .landing {
+  width: 100%;
+}
+
+.landing-title-container {
   width: 100vw;
   height: 100vh;
   /* background-color: rgba(255, 0, 0, 0.2); */
@@ -13,7 +17,7 @@
   /* font-family: "Inconsolata", monospace; */
 }
 
-.landing p {
+.landing-title-container p {
   width: 693px;
   font-family: "title", serif;
   font-style: normal;
@@ -26,4 +30,47 @@
 
   color: #000;
   /* background-color: rgba(0, 255, 0, 0.2); */
+}
+
+.projects-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.projects-container img {
+  width: 100%;
+}
+.project-wrapper {
+  width: 100%;
+  margin-bottom: 220px;
+}
+.project-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.project-details {
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  /* or 107% */
+
+  text-transform: uppercase;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 80%;
+  /* margin-bottom: 20px; */
+  box-sizing: border-box;
+  margin: 0 40px 20px 40px;
+}
+
+.project-details .project-name {
+  text-transform: none;
+  font-family: "title";
+  font-style: normal;
+  font-weight: 100;
+  font-size: 56px;
+  line-height: 120%;
 }
