@@ -1,5 +1,5 @@
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   color: #000;
@@ -12,6 +12,8 @@
 
   font-family: "Inconsolata", monospace;
   padding: 16px 40px;
+  color: white;
+  mix-blend-mode: difference;
 }
 
 .container-left {

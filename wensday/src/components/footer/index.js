@@ -9,11 +9,8 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="main-container">
-        <NavLink
-          to="/"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
-          <p>Projects</p>
+        <NavLink to="/">
+          <p>Home</p>
         </NavLink>
         <a href="https://yiwenl.github.io/Sketches" target="_blank">
           <p>Sketches</p>

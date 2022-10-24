@@ -51,15 +51,6 @@
   align-items: center;
 }
 
-.grid-container {
-  float: left;
-  width: 740px;
-  height: 740px;
-  box-sizing: border-box;
-
-  display: block;
-}
-
 .small-container {
   float: left;
   width: 370px;

@@ -16,11 +16,8 @@ const Header = () => {
         <p>CREATIVE CODER</p>
       </div>
       <div className="container-right">
-        <NavLink
-          to="/"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
-          <p>Projects</p>
+        <NavLink to="/">
+          <p>Home</p>
         </NavLink>
         <p>&nbsp;//&nbsp;</p>
         <a href="https://yiwenl.github.io/Sketches" target="_blank">
@@ -34,7 +31,12 @@ const Header = () => {
           <p>Generative</p>
         </NavLink>
         <p>&nbsp;//&nbsp;</p>
-        <p>info</p>
+        <NavLink
+          to="info"
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        >
+          <p>info</p>
+        </NavLink>
       </div>
     </div>
   );
