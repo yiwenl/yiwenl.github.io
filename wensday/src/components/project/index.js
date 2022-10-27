@@ -5,26 +5,43 @@ import ReactPlayer from "react-player";
 const Project = ({ match }) => {
   const { id } = match.params;
   const projectData = SiteData.projects.find((p) => p.id === id);
-  const { cover, medias } = projectData;
+  const { cover, medias, descrpition } = projectData;
+
+  const { min, floor } = Math;
+  const videoWidth = floor(min(1280, window.innerWidth) * 0.7);
+  const videoHeight = floor((videoWidth * 9) / 16);
 
   console.log(projectData);
   return (
     <div className="project">
-      <img src={`${process.env.PUBLIC_URL}/assets/${cover}`}></img>
-      <div className="project-detial-wrapper">
-        <div className="project-desc-wrapper"></div>
+      <img
+        className="project-cover"
+        src={`${process.env.PUBLIC_URL}/assets/${cover}`}
+      ></img>
+      <div className="project-detail-wrapper">
+        <div className="project-desc-wrapper">
+          <p>{descrpition}</p>
+        </div>
         <div className="project-media-wrapper">
           {medias.map(({ type, url }, i) => {
             if (type === "image") {
               return (
                 <img
+                  className="media-item"
                   key={`media-${i}`}
                   src={`${process.env.PUBLIC_URL}/assets/${url}`}
                 ></img>
               );
             } else if (type === "vimeo") {
               return (
-                <ReactPlayer key={`media-${i}`} url={url} controls="true" />
+                <ReactPlayer
+                  className="media-item"
+                  key={`media-${i}`}
+                  url={url}
+                  controls={true}
+                  width={`${videoWidth}px`}
+                  height={`${videoHeight}px`}
+                />
               );
             }
           })}

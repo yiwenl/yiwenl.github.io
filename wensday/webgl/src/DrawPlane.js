@@ -6,7 +6,7 @@ class DrawPlane extends Draw {
   constructor() {
     super();
 
-    const s = 5;
+    const s = 12;
     const num = 200;
     const mesh = Geom.plane(s, s, num, "xz");
 

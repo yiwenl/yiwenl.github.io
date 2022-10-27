@@ -1,26 +1,41 @@
 // copy.frag
 
-#define SHADER_NAME SIMPLE_TEXTURE
+#define NUM ${NUM}
 
 precision highp float;
 varying vec2 vTextureCoord;
-uniform sampler2D texture;
+uniform vec2 uCenter[NUM];
+uniform vec3 uWave[NUM];
+uniform float uSeed;
+uniform float uTime;
 
-#define uWaveFront 0.2
-#define uWaveLength 0.1
-#define uWaveFreq 100.0
-#define uWaveHeight 0.15
+#define uWaveFreq 150.0
 
 void main(void) {
-    vec2 center = vec2(0.5);
 
-    float d = distance(vTextureCoord, center);
-    float distToFront = distance(d, uWaveFront);
+    float t = uTime;
+    float w = 0.0;
+    vec2 uv = vTextureCoord;
 
-    float h = sin(d * uWaveFreq) * 0.5 + 0.5;
+    for(int i=0; i<NUM; i++) {
+        vec2 center = uCenter[i];
+        vec3 wave = uWave[i];
 
-    float w = smoothstep(uWaveLength, 0.0, distToFront);
-    w *= h * uWaveHeight;
+        float uWaveFront = wave.x;
+        float uWaveHeight = 0.15 * wave.y;
+        float uWaveLength = 0.05 * wave.z;
+        float d = distance(uv, center);
+        float distToFront = distance(d, uWaveFront);
+
+        float h = cos(distToFront * uWaveFreq) * 0.5 + 0.5;
+
+        float tw = smoothstep(uWaveLength, 0.0, distToFront);
+        tw *= h * uWaveHeight;
+
+        w += tw;
+        // w = max(w, tw);
+    }
+
     
     gl_FragColor = vec4(vec3(w), 1.0);
 }

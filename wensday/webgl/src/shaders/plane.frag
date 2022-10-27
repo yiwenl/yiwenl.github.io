@@ -18,9 +18,9 @@ void main(void) {
     float h = texture2D(uHeightMap, vTextureCoord).r;
     float d = diffuse(N, LIGHT, .5) + 0.2;
 
-    float off = h * 0.1;
+    float off = h * 0.05;
     vec2 uv = vTextureCoord;
-    uv.xy += N.xz * 0.03;
+    uv.xy += N.xz * 0.01;
 
     float r = texture2D(uTextMap, uv + vec2(-off, 0.0)).r;
     float g = texture2D(uTextMap, uv ).g;

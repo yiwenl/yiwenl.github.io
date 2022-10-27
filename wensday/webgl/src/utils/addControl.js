@@ -15,6 +15,7 @@ export default (anim) => {
 
   const gui = new dat.GUI({ width: 300 });
   window.gui = gui;
+  gui.add(Config, "numRipples", 3, 10).step(1).onFinishChange(reload);
 
   gui.add(Config, "autoSave").onFinishChange(reload);
   gui.add(oControl, "save").name("Save Settings");

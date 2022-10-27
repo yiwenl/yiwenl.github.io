@@ -1,0 +1,48 @@
+.project {
+  width: 100%;
+}
+
+.project-cover {
+  width: 100vw;
+  /* height: 100vh; */
+  margin-bottom: 80px;
+}
+
+.project-detail-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.project-desc-wrapper {
+  width: 30%;
+  float: left;
+  box-sizing: border-box;
+
+  font-family: "description";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  padding-right: 100px;
+  white-space: pre-wrap;
+}
+
+.project-media-wrapper {
+  width: 70%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.project-media-wrapper img {
+  width: 100%;
+}
+
+.media-item {
+  margin-bottom: 80px;
+}
+
+media-item:last-child {
+  margin-bottom: 0px;
+}
