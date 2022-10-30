@@ -1,0 +1,53 @@
+{
+  "extends" : ["airbnb/base"],
+  "plugins": [
+    'import',
+    'babel'
+  ],
+  "rules": {
+    curly: 0,
+    'default-case': 0,
+    'import/default': 2,
+    'import/export': 2,
+    'import/named': 2,
+    'import/namespace': 2,
+    'import/no-unresolved': [2, {
+      commonjs: true,
+      amd: true
+    }],
+    "indent": [1, 'tab', {
+      SwitchCase: 1
+    }],
+    'new-cap': [2, {
+      capIsNew: false,
+      newIsCap: true
+    }],
+    'no-param-reassign': 0,
+    'no-shadow': 0,
+  },
+  "globals": {
+    after: false,
+    afterEach: false,
+    before: false,
+    beforeEach: false,
+    describe: false,
+    it: false,
+    require: false,
+    Modernizr: false,
+    Detector: false
+  },
+  "settings": {
+    'import/ignore': [
+      'node_modules',
+      '\\.json$'
+    ],
+    'import/parser': 'babel-eslint',
+    'import/resolve': {
+      extensions: [
+        '.js',
+        '.json',
+        '.jsx'
+      ]
+    }
+  }
+}

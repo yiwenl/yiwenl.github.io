@@ -4,8 +4,10 @@
 
 .project-cover {
   width: 100vw;
-  /* height: 100vh; */
+  height: 100vh;
   margin-bottom: 80px;
+  background-size: cover;
+  background-position: center;
 }
 
 .project-detail-wrapper {

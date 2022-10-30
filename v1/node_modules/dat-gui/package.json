@@ -1,0 +1,26 @@
+{
+  "name": "dat-gui",
+  "description": "Browserified dat-gui library",
+  "version": "0.5.0",
+  "homepage": "https://code.google.com/p/dat-gui/",
+  "author": {
+    "name": "Data Arts Team, Google Creative Lab"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://code.google.com/p/dat-gui/"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

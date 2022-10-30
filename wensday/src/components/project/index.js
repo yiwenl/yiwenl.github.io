@@ -5,7 +5,7 @@ import ReactPlayer from "react-player";
 const Project = ({ match }) => {
   const { id } = match.params;
   const projectData = SiteData.projects.find((p) => p.id === id);
-  const { cover, medias, descrpition } = projectData;
+  const { medias, descrpition, innerCover: cover } = projectData;
 
   const { min, floor } = Math;
   const videoWidth = floor(min(1280, window.innerWidth) * 0.7);
@@ -14,10 +14,12 @@ const Project = ({ match }) => {
   console.log(projectData);
   return (
     <div className="project">
-      <img
+      <div
         className="project-cover"
-        src={`${process.env.PUBLIC_URL}/assets/${cover}`}
-      ></img>
+        style={{
+          backgroundImage: `url(${process.env.PUBLIC_URL}/assets/${cover})`,
+        }}
+      ></div>
       <div className="project-detail-wrapper">
         <div className="project-desc-wrapper">
           <p>{descrpition}</p>

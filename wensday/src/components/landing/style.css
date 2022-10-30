@@ -2,6 +2,11 @@
   width: 100%;
 }
 
+.Landing-wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+
 .landing-title-container {
   width: 100vw;
   height: 100vh;
@@ -13,6 +18,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: absolute;
+  z-index: 1;
 
   /* font-family: "Inconsolata", monospace; */
 }
@@ -73,4 +81,8 @@
   font-weight: 100;
   font-size: 56px;
   line-height: 120%;
+}
+
+.webgl-container {
+  position: absolute;
 }
