@@ -38,7 +38,12 @@ At the moment of sunrise, step towards the future.
       subtitle: "Barbican Centre - AI: More Than Human",
       cover: "projects/dfp-Cover.jpg",
       innerCover: "projects/dfp-CoverInner.jpg",
-      descrpition: "Data Face Print",
+      descrpition: `Part of the 'AI:More than Human' exhibition 2019 at Barbican
+
+Through a series of questions, making viewers realize how big of a footprint they have left on the internet. The project is built using WebGL combined with face detection. With detection of the looking direction of the face, we could also detect whether the viewer is nodding or shaking their head. And then we invite the views to nod or shake to answer the question. 
+
+Progressing through the questions, if the user has left more footprints on the internet, it makes the face more visible. 
+        `,
       medias: [
         {
           type: "image",
@@ -64,7 +69,10 @@ At the moment of sunrise, step towards the future.
       subtitle: "Visualisation of a football game",
       cover: "projects/pulseCover.jpg",
       innerCover: "projects/pulseCoverInner.jpg",
-      descrpition: "Visualisation of a football game",
+      descrpition: `Pulse is a data visualization of a football match using the gathered audio data in a live football match. Enabling viewers to see and hear the excitement of the match scrolling through the timeline and compare with the marked important timestamps. An alternative view is also provided for visualizing the overview of the match.
+ 
+The project is built with a customized WebGL library. Capture the mouse scroll to move the camera through the timeline and using instancing to render the huge amount of cubes.      
+      `,
       medias: [
         {
           type: "image",
@@ -86,7 +94,12 @@ At the moment of sunrise, step towards the future.
       subtitle: "2018",
       cover: "projects/sibosCover.jpg",
       innerCover: "projects/sibosCoverInner.jpg",
-      descrpition: "Visualisation of a football game",
+      descrpition: `An interactive data visualization project, using the data of the transactions of the Sibos in one day. Each circle represents a transaction, the bigger the circle is, the larger the amount is. There are also 5 interactive data stories that are randomly displayed when viewers get close to the LED wall.
+
+There are different layers of interaction in this project. The first layer is for viewers that's more than a meter away from the LED wall. 2 Kinects are set up to capture the viewer's motion and use it to affect the flow of the circles. The second layer is when the viewer stands next to the LED wall, a randomly selected data story will appear in front of the viewer. The last layer is the touch LED wall that the viewer can go through the different pages of the data story or even to the next data story.
+      
+The visualization is built using WebGL and a custom library. Processing for capturing motion with kinect, and lastly a node server is set up as the central control transmitting message and events between WebGL and the kinect using websockets and OSC.
+      `,
       medias: [
         {
           type: "vimeo",

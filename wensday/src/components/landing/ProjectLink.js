@@ -1,7 +1,7 @@
 import "./style.css";
 import { NavLink } from "react-router-dom";
 
-const ProjectLink = ({ id, cover, title, subtitle }) => {
+const ProjectLink = ({ id, innerCover, title, subtitle }) => {
   return (
     <div className="project-wrapper">
       <div className="project-details">
@@ -14,7 +14,7 @@ const ProjectLink = ({ id, cover, title, subtitle }) => {
         <p>{subtitle}</p>
       </div>
       <NavLink to={`/project/${id}`}>
-        <img src={`${process.env.PUBLIC_URL}/assets/${cover}`}></img>
+        <img src={`${process.env.PUBLIC_URL}/assets/${innerCover}`}></img>
       </NavLink>
     </div>
   );
