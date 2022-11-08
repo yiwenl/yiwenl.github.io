@@ -75,6 +75,10 @@ The project is built with a customized WebGL library. Capture the mouse scroll t
       `,
       medias: [
         {
+          type: "vimeo",
+          url: "https://vimeo.com/768524473",
+        },
+        {
           type: "image",
           url: "projects/pulse03.jpg",
         },
