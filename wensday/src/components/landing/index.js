@@ -9,7 +9,7 @@ const Landing = () => {
   return (
     <div className="landing">
       <div className="Landing-wrapper">
-        {/* <WebGL /> */}
+        <WebGL />
         <div className="landing-title-container">
           <p>
             WENSDAY is the portfolio of Yi-Wen LIN — creative coder and
