@@ -16,7 +16,7 @@ const Footer = () => {
           <p>Sketches</p>
         </a>
         <NavLink
-          to="generative"
+          to="/generative"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <p className="last-child">Generative</p>
