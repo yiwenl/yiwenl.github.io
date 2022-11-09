@@ -43,7 +43,7 @@
   float: left;
   width: 740px;
   height: 740px;
-  border: solid 1px #eee;
+  border: solid 1px rgba(10, 10, 10, 0.1);
   box-sizing: border-box;
 
   display: flex;
@@ -55,7 +55,7 @@
   float: left;
   width: 370px;
   height: 370px;
-  border: solid 1px #eee;
+  border: solid 1px rgba(10, 10, 10, 0.1);
   box-sizing: border-box;
 
   display: flex;
