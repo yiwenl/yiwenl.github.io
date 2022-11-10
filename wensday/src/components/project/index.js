@@ -2,6 +2,7 @@ import "./style.css";
 import SiteData from "../../model/siteData";
 import ReactPlayer from "react-player";
 import { NavLink } from "react-router-dom";
+import Footer from "../../components/footer";
 
 const Project = ({ match }) => {
   const { id } = match.params;
@@ -65,6 +66,7 @@ const Project = ({ match }) => {
           <p className="project-next-profile-title">{projectNext.title}</p>
         </NavLink>
       </div>
+      <Footer mini={true} />
     </div>
   );
 };

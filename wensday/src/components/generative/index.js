@@ -1,6 +1,7 @@
 import "./style.css";
 import ProjContainer from "./projContainer";
 import siteData from "../../model/siteData";
+import Footer from "../../components/footer";
 
 const Generative = () => {
   const {
@@ -90,6 +91,7 @@ const Generative = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

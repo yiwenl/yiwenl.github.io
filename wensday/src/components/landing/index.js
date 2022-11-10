@@ -2,6 +2,7 @@ import "./style.css";
 import siteData from "../../model/siteData";
 import ProjectLink from "./ProjectLink";
 import WebGL from "../webgl";
+import Footer from "../../components/footer";
 
 const Landing = () => {
   const { projects } = siteData;
@@ -25,6 +26,7 @@ const Landing = () => {
           return <ProjectLink key={project.id} {...project} />;
         })}
       </div>
+      <Footer />
     </div>
   );
 };

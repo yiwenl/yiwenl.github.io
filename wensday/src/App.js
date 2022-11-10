@@ -27,7 +27,7 @@ function App() {
             <Route path="/project/:id" exact component={Project} />
             <Route path="/info" exact component={Info} />
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
         </header>
       </div>
     </HashRouter>

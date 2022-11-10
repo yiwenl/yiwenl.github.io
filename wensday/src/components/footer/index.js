@@ -1,27 +1,35 @@
 import "./style.css";
 import { NavLink } from "react-router-dom";
 
-const Footer = () => {
+const Footer = ({ mini, dark }) => {
+  let _isMini = mini === undefined ? false : mini;
+  let _isDark = dark === undefined ? false : dark;
   let activeStyle = {
     opacity: 0.2,
   };
 
+  let clazzName = "footer";
+  if (_isMini) clazzName += " mini";
+  if (_isDark) clazzName += " dark";
+
   return (
-    <div className="footer">
-      <div className="main-container">
-        <NavLink to="/">
-          <p>Home</p>
-        </NavLink>
-        <a href="https://yiwenl.github.io/Sketches" target="_blank">
-          <p>Sketches</p>
-        </a>
-        <NavLink
-          to="/generative"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
-          <p className="last-child">Generative</p>
-        </NavLink>
-      </div>
+    <div className={clazzName}>
+      {!_isMini && (
+        <div className="main-container">
+          <NavLink to="/">
+            <p>Home</p>
+          </NavLink>
+          <a href="https://yiwenl.github.io/Sketches" target="_blank">
+            <p>Sketches</p>
+          </a>
+          <NavLink
+            to="/generative"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            <p className="last-child">Generative</p>
+          </NavLink>
+        </div>
+      )}
       <div className="link-container">
         <div className="social-container">
           <a href="https://instagram.com/yiwen" target="_blank">

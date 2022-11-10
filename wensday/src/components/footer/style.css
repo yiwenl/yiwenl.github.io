@@ -9,6 +9,10 @@
   justify-content: center;
 }
 
+.footer.mini {
+  height: 50px;
+}
+
 .main-container {
   font-family: "title", serif;
   box-sizing: border-box;
@@ -16,6 +20,10 @@
   font-size: 56px;
   line-height: 120%;
   text-align: center;
+}
+
+.dark .main-container {
+  color: white;
 }
 
 .main-container p {
@@ -43,6 +51,10 @@
   /* identical to box height, or 14px */
 
   text-transform: uppercase;
+}
+
+.dark .link-container {
+  color: white;
 }
 
 .link-container .social-container {

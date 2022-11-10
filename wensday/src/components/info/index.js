@@ -1,5 +1,6 @@
 import "./style.css";
 import logo from "../../logo.svg";
+import Footer from "../../components/footer";
 
 const Info = () => {
   return (
@@ -103,6 +104,7 @@ const Info = () => {
           </div>
         </div>
       </div>
+      <Footer dark={true} />
     </div>
   );
 };
