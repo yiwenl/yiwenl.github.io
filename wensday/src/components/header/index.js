@@ -25,14 +25,14 @@ const Header = () => {
         </a>
         <p>&nbsp;//&nbsp;</p>
         <NavLink
-          to="generative"
+          to="/generative"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <p>Generative</p>
         </NavLink>
         <p>&nbsp;//&nbsp;</p>
         <NavLink
-          to="info"
+          to="/info"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <p>info</p>
