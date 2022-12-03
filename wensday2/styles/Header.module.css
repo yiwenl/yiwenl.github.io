@@ -7,7 +7,6 @@
   padding: 16px 40px;
   color: white;
   mix-blend-mode: difference;
-  text-transform: uppercase;
 
   font-family: "Inconsolata", monospace;
   font-weight: 400;
@@ -16,9 +15,7 @@
   position: fixed;
   z-index: 99;
 
-  /* debugger */
   display: flex;
-  background: rgba(255, 0, 0, 0.5);
   justify-content: space-between;
   align-items: center;
 }
@@ -28,6 +25,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .subtitle {
+    display: none;
+  }
 }
 
 .links {

@@ -4,6 +4,9 @@ body {
   padding: 0;
   margin: 0;
   font-family: "description", sans-serif;
+  background: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {

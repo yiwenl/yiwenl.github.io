@@ -9,7 +9,7 @@ const Header = () => {
           WENSDAY.CO
           <br />/ YI-WEN LIN
         </div>
-        <div>CREATIVE CODER</div>
+        <div className={styles.subtitle}>CREATIVE CODER</div>
       </div>
       <div className={styles.links}>
         <Link href="/" as="/">
