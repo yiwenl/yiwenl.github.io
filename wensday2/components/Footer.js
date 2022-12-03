@@ -5,12 +5,6 @@ const Footer = ({ mini, dark }) => {
   let _isMini = mini === undefined ? false : mini;
   let _isDark = dark === undefined ? false : dark;
 
-  console.log(_isMini, _isDark);
-
-  let clazzName = "";
-  if (_isMini) clazzName += " mini";
-  if (_isDark) clazzName += " dark";
-
   let containerStyle = styles.container;
   if (_isMini) containerStyle += " " + styles.mini;
 
