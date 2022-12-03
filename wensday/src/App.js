@@ -1,7 +1,7 @@
 import "./App.css";
 
 // Router
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, HashRouter, Switch, Route } from "react-router-dom";
 
 import ScrollToTop from "./ScrollToTop";
 

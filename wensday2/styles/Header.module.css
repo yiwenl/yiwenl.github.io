@@ -1,0 +1,41 @@
+.container {
+  top: 0;
+  width: 100%;
+  height: 50px;
+  display: fixed;
+  box-sizing: border-box;
+  padding: 16px 40px;
+  color: white;
+  mix-blend-mode: difference;
+  text-transform: uppercase;
+
+  font-family: "Inconsolata", monospace;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  position: fixed;
+  z-index: 99;
+
+  /* debugger */
+  display: flex;
+  background: rgba(255, 0, 0, 0.5);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.links p {
+  white-space: pre-line;
+}
