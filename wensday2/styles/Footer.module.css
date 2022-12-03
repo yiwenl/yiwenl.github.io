@@ -1,0 +1,82 @@
+.container {
+  width: 100vw;
+  height: 337px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini {
+  height: 50px;
+}
+
+.dark {
+  color: #f5f5f5;
+}
+
+.container .last-child {
+  float: left;
+  margin-right: 0px;
+}
+
+.topContainer {
+  font-family: "title", serif;
+  box-sizing: border-box;
+  font-weight: 100;
+  font-size: 56px;
+  line-height: 120%;
+  text-align: center;
+}
+
+.dark .topContainer {
+  color: white;
+}
+
+.topContainer p {
+  float: left;
+  margin-right: 40px;
+}
+
+@media screen and (max-width: 800px) {
+  .topContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .topContainer p {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+.links {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  box-sizing: border-box;
+
+  padding: 16px 40px;
+
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-transform: uppercase;
+}
+
+.links .social {
+  float: left;
+}
+
+.links .social p {
+  float: left;
+  margin-right: 40px;
+}
+
+.links .email {
+  float: right;
+}
