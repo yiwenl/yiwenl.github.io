@@ -1,0 +1,22 @@
+.container {
+  position: relative;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container h1 {
+  max-width: 693px;
+  font-family: "title", serif;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 56px;
+  line-height: 100%;
+
+  text-align: center;
+
+  color: #000;
+}
