@@ -1,0 +1,70 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  margin: 150px 0;
+
+  font-family: "title", serif;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 56px;
+  line-height: 100%;
+
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.column {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.itemSmall {
+  width: 50%;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 60%;
+  aspect-ratio: 1 / 1;
+}
+
+.projectTitle {
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    flex-wrap: wrap;
+  }
+  .itemSmall {
+    width: 100%;
+  }
+  .column {
+    width: 100%;
+  }
+}
