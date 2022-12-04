@@ -10,8 +10,18 @@ import Meta from "../../components/Meta";
 import Header from "../../components/Header";
 import Media from "../../components/Media";
 import Footer from "../../components/Footer";
+import ProjectNavigator from "../../components/ProjectNavigator";
 
 const Project = ({ project }) => {
+  const { projects } = SiteData;
+  let index = -1;
+  projects.forEach((p, i) => {
+    if (p.id === project.id) {
+      index = i;
+    }
+  });
+  const nextIndex = index === projects.length - 1 ? 0 : index + 1;
+  const nextProject = projects[nextIndex];
   const { medias, description } = project;
   return (
     <>
@@ -31,7 +41,8 @@ const Project = ({ project }) => {
           </div>
         </div>
       </div>
-      <Footer />
+      <ProjectNavigator title={nextProject.title} id={nextProject.id} />
+      <Footer mini={true} />
     </>
   );
 };

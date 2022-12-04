@@ -1,7 +1,6 @@
 import styles from "../styles/Generative.module.css";
 import Image from "next/image";
 const GenerativeItem = ({ project, small }) => {
-  console.log(project);
   const _isSmall = small === undefined ? false : small;
   const style = _isSmall ? `${styles.item} ${styles.itemSmall}` : styles.item;
 

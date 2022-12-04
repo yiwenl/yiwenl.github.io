@@ -25,7 +25,7 @@ const Footer = ({ mini, dark }) => {
             <p>Sketches</p>
           </a>
           <Link href="/generative" as="/generative">
-            <p className="last-child">Generative</p>
+            <p className={styles.lastChild}>Generative</p>
           </Link>
         </div>
       )}

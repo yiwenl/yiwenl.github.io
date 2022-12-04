@@ -1,5 +1,5 @@
 .container {
-  max-width: 1024px;
+  max-width: 1280px;
   margin: 80px auto 0 auto;
   display: flex;
   box-sizing: border-box;
@@ -36,10 +36,6 @@
   position: relative;
   aspect-ratio: 16 / 9;
   margin-bottom: 80px;
-}
-
-.imageWrapper:last-child {
-  margin-bottom: 0;
 }
 
 @media screen and (max-width: 768px) {

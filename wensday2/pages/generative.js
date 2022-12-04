@@ -11,7 +11,6 @@ import GenerativeItem from "../components/GenerativeItem";
 
 const Generative = () => {
   const { generatives } = SiteData;
-  console.log("generative", generatives);
   return (
     <>
       <Meta title={"Wensday | Generative"} />

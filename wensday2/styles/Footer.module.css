@@ -80,3 +80,7 @@
 .links .email {
   float: right;
 }
+
+.lastChild {
+  margin-right: 0px;
+}
