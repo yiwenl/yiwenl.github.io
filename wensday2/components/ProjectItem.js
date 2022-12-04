@@ -5,8 +5,6 @@ import styles from "../styles/ProjectItem.module.css";
 const ProjectItem = ({
   project: { id, title, subtitle, innerCover: cover },
 }) => {
-  const w = 500;
-  const h = (w * 9) / 16;
   return (
     <div className={styles.container}>
       <div className={styles.title}>
