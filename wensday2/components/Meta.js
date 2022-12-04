@@ -12,7 +12,7 @@ const Meta = ({ title }) => {
         <meta property="og:type" content="website" />
         <meta
           property="og:description"
-          content="Freelance Createive Coder based in UK"
+          content="Freelance Creative Coder based in UK"
         />
         <meta property="og:image" content="https://wensday.co/wensdayBig.jpg" />
 
@@ -22,7 +22,7 @@ const Meta = ({ title }) => {
         <meta name="twitter:title" content="Yi-Wen Lin | Creative Coder" />
         <meta
           name="twitter:description"
-          content="Freelance Createive Coder based in UK"
+          content="Freelance Creative Coder based in UK"
         />
         <meta
           name="twitter:image"

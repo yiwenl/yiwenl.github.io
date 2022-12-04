@@ -23,16 +23,16 @@ a {
 
 @font-face {
   font-family: "title";
-  src: url("../fonts/title.woff2") format("woff2"),
-    url("../fonts/title.woff") format("woff");
+  src: url("/fonts/title.woff2") format("woff2"),
+    url("/fonts/title.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "description";
-  src: url("../fonts/description.woff2") format("woff2"),
-    url("../fonts/description.woff") format("woff");
+  src: url("/fonts/description.woff2") format("woff2"),
+    url("/fonts/description.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
