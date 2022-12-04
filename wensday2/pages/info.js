@@ -10,10 +10,10 @@ const Info = () => {
     <div className={styles.info}>
       <Meta title={"Wensday | Info"} />
       <Header />
+      <div className={styles.logo}>
+        <Image src={"/assets/logo.svg"} alt="" fill />
+      </div>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <Image src={"/assets/logo.svg"} alt="" fill />
-        </div>
         <p className={styles.body}>
           WENSDAY is the portfolio of Yi-Wen LIN — creative coder and generative
           artist from Taiwan. Based in London, UK.

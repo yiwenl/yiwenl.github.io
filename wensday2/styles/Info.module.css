@@ -8,14 +8,15 @@
   background: #1e1e1e;
   max-width: 1024px;
   height: 100vh;
-  padding-top: 100px;
   margin: 0 auto;
   display: table;
 }
 
 .logo {
   position: relative;
-  width: 100%;
+  margin-top: 80px;
+  width: 116%;
+  margin-left: -8%;
   aspect-ratio: 5 / 1;
 }
 
@@ -50,7 +51,6 @@
 
 .extraDescription {
   width: 60%;
-  height: 100%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -98,4 +98,22 @@
 
 .linksTitle {
   opacity: 0.2;
+}
+
+@media screen and (max-width: 1024px) {
+  .bottomContainer {
+    display: block;
+    padding: 40px;
+    box-sizing: border-box;
+  }
+
+  .extraDescription {
+    width: 100%;
+    padding-right: 0px;
+    padding-bottom: 50px;
+  }
+
+  .links {
+    width: 100%;
+  }
 }
