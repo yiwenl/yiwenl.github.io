@@ -1,6 +1,5 @@
 import ProjectItem from "./ProjectItem";
 const ProjectList = ({ projects }) => {
-  console.table(projects);
   return (
     <div>
       {projects.map((project, i) => (

@@ -51,3 +51,9 @@
   font-size: 14px;
   line-height: 15px;
 }
+
+.imageWrapper {
+  position: relative;
+  width: 100vw;
+  aspect-ratio: 16 / 9;
+}

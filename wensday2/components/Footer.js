@@ -1,5 +1,5 @@
 import styles from "../styles/Footer.module.css";
-import Link from "next/Link";
+import Link from "next/link";
 
 const Footer = ({ mini, dark }) => {
   let _isMini = mini === undefined ? false : mini;
