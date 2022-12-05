@@ -41,6 +41,7 @@
 @media screen and (max-width: 768px) {
   .container {
     display: block;
+    margin: 60px auto 0 auto;
   }
 
   .description {
@@ -53,6 +54,9 @@
     width: 100%;
     padding-left: 0;
     padding-bottom: 40px;
+  }
+  .imageWrapper {
+    margin-bottom: 40px;
   }
 }
 

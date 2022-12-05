@@ -40,3 +40,18 @@
     padding: 0;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .container {
+    height: 100px;
+  }
+
+  .container h1 {
+    font-size: 24px;
+    margin-top: -14px;
+  }
+
+  .container p {
+    font-size: 10px;
+  }
+}
