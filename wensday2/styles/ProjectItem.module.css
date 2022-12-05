@@ -57,3 +57,23 @@
   width: 100vw;
   aspect-ratio: 16 / 9;
 }
+
+@media screen and (max-width: 500px) {
+  .container {
+    margin-bottom: 80px;
+  }
+
+  .title {
+    align-items: center;
+  }
+  .title h2 {
+    font-size: 24px;
+    margin-top: 12px;
+  }
+  .title h3 {
+    display: none;
+  }
+  .title p {
+    font-size: 10px;
+  }
+}
