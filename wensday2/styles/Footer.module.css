@@ -39,10 +39,16 @@
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    display: table;
+  }
+
   .topContainer {
     display: flex;
     flex-direction: column;
+    padding: 40px 0 60px 0;
   }
+
   .topContainer p {
     width: 100%;
     text-align: center;
