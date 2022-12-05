@@ -53,7 +53,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  margin-top: 8px;
+  margin-top: 10px;
   text-transform: uppercase;
 }
 
@@ -66,5 +66,15 @@
   }
   .column {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .imageWrapper {
+    width: 80%;
+  }
+
+  .projectTitle {
+    margin-top: 12px;
   }
 }
