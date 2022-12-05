@@ -1,13 +1,12 @@
-.info {
+.about {
   background: #1e1e1e;
   width: 100%;
-  display: table;
+  overflow-x: hidden;
 }
 
 .container {
   background: #1e1e1e;
   max-width: 1024px;
-  height: 100vh;
   margin: 0 auto;
   display: table;
 }

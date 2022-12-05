@@ -24,8 +24,8 @@ const Header = () => {
           GENERATIVE
         </Link>
         <p>&nbsp;//&nbsp;</p>
-        <Link href="/info" as="/info">
-          INFO
+        <Link href="/about" as="/about">
+          ABOUT
         </Link>
       </div>
     </div>

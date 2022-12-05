@@ -1,17 +1,17 @@
-import styles from "../styles/Info.module.css";
+import styles from "../styles/About.module.css";
 import Image from "next/image";
 
 import Meta from "../components/Meta";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Info = () => {
+const About = () => {
   return (
-    <div className={styles.info}>
-      <Meta title={"Wensday | Info"} />
+    <div className={styles.about}>
+      <Meta title={"Wensday | About"} />
       <Header />
       <div className={styles.logo}>
-        <Image src={"/assets/logo.svg"} alt="" fill />
+        <Image src={"/assets/logo.svg"} alt="" fill className={styles.image} />
       </div>
       <div className={styles.container}>
         <p className={styles.body}>
@@ -110,4 +110,4 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default About;

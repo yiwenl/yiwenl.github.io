@@ -18,8 +18,9 @@ const Landing = () => {
         <Image src={"/assets/cover.jpg"} fill alt={"cover"} />
       </div> */}
       <h1>
-        WENSDAY is the portfolio of Yi-Wen LIN — creative coder and generative
-        artist from Taiwan.
+        WENSDAY is the portfolio of
+        <br />
+        Yi-Wen LIN — creative coder and generative artist from Taiwan.
         <br />
         <br /> Based in London, UK. Working remotely with clients and partners
         worldwide.
