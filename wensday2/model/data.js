@@ -1,6 +1,36 @@
 export default {
   projects: [
     {
+      id: "brain-virtual-theater",
+      title: "Brain Virtual Theater",
+      subtitle: "Collective Consciousness + Virtual Reality",
+      cover: "/assets/projects/bvt-cover.jpg",
+      innerCover: "/assets/projects/bvt-cover.jpg",
+      description: `Brain Virtual Theater is a multi-sensory virtual installation that blends a circular altar, collective consciousness, virtual reality, and generative art. It explores the idea that our perception of the world is fundamentally shaped by the mental images within our brain—subjective projections interpreted through neural signals. As we enter an era where digital simulations increasingly influence our inner worlds, this work questions whether our brain is decoding the universe, or if it is actively creating it.
+      
+In this project, I focused on developing GPU-accelerated particle systems within Unity. I designed and implemented real-time visual effects using compute shaders, enabling efficient simulation and rendering of complex particle behaviors. This approach allowed for high-performance, dynamic visual feedback responsive to EEG input and user activity within the VR environment.
+
+This project marked my first experience building an interactive system in Unity and my first time contributing to a multi-user VR experience. I explored various visualization strategies and optimized real-time performance, deepening my understanding of Unity’s rendering pipeline and shader architecture. The integration of neural input into the VR system also broadened my interest in combining biometric data with interactive media, opening up possibilities for future projects at the intersection of art, neuroscience, and technology.`,
+      medias: [
+        {
+          type: "image",
+          url: "/assets/projects/bvt-001.jpg",
+        },
+        {
+          type: "image",
+          url: "/assets/projects/bvt-002.jpg",
+        },
+        {
+          type: "image",
+          url: "/assets/projects/bvt-003.jpg",
+        },
+        {
+          type: "vimeo",
+          url: "https://www.youtube.com/watch?v=QV0_ccMzSv4",
+        },
+      ],
+    },
+    {
       id: "lanuitlumiere",
       title: "La Nuit Lumière",
       subtitle: "La Nuit Blanche Taipei 2022",
