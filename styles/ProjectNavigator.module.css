@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   width: 100%;
   height: 200px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -8,11 +9,31 @@
   align-items: center;
 }
 
+.homeLink {
+  margin-left: auto;
+  align-self: center;
+  position: relative;
+  z-index: 2;
+  font-family: Inconsolata;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+}
+
+.homeLink:hover {
+  opacity: 0.55;
+}
+
 .container h1 {
   position: absolute;
   left: 30%;
   padding-left: 65px;
   box-sizing: border-box;
+  z-index: 0;
 
   font-family: title, serif;
   font-size: 56px;
@@ -23,6 +44,8 @@
 }
 
 .container p {
+  position: relative;
+  z-index: 2;
   font-family: Inconsolata;
   font-size: 14px;
   font-style: normal;
@@ -52,6 +75,10 @@
   }
 
   .container p {
+    font-size: 10px;
+  }
+
+  .homeLink {
     font-size: 10px;
   }
 }

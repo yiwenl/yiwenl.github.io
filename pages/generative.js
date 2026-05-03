@@ -23,21 +23,21 @@ const Generative = () => {
         </h1>
         <div className={styles.wrapper}>
           <div className={styles.column}>
-            <GenerativeItem project={generatives.fireWithin} />
-            <GenerativeItem small={true} project={generatives.strand} />
-            <GenerativeItem small={true} project={generatives.labyrinth} />
-            <GenerativeItem project={generatives.maze} />
-            <GenerativeItem project={generatives.threads} />
+            <GenerativeItem index={0} project={generatives.fireWithin} />
+            <GenerativeItem index={1} small={true} project={generatives.strand} />
+            <GenerativeItem index={2} small={true} project={generatives.labyrinth} />
+            <GenerativeItem index={3} project={generatives.maze} />
+            <GenerativeItem index={4} project={generatives.threads} />
           </div>
           <div className={styles.column}>
-            <GenerativeItem small={true} project={generatives.collage} />
-            <GenerativeItem small={true} project={generatives.sketching} />
-            <GenerativeItem small={true} project={generatives.wondering} />
-            <GenerativeItem small={true} project={generatives.percentage} />
-            <GenerativeItem project={generatives.hex} />
-            <GenerativeItem small={true} project={generatives.rubixCube} />
-            <GenerativeItem small={true} project={generatives.excursion} />
-            <GenerativeItem project={generatives.circles} />
+            <GenerativeItem index={5} small={true} project={generatives.collage} />
+            <GenerativeItem index={6} small={true} project={generatives.sketching} />
+            <GenerativeItem index={7} small={true} project={generatives.wondering} />
+            <GenerativeItem index={8} small={true} project={generatives.percentage} />
+            <GenerativeItem index={9} project={generatives.hex} />
+            <GenerativeItem index={10} small={true} project={generatives.rubixCube} />
+            <GenerativeItem index={11} small={true} project={generatives.excursion} />
+            <GenerativeItem index={11} project={generatives.circles} />
           </div>
         </div>
       </div>

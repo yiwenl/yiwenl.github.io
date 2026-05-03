@@ -58,22 +58,45 @@
   aspect-ratio: 16 / 9;
 }
 
+@media screen and (max-width: 768px) {
+  .title {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: auto;
+    padding: 0 0 0 16px;
+  }
+
+  .title p {
+    display: none;
+  }
+
+  .title h2 {
+    position: static;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .title h3 {
+    position: static;
+    margin-left: 2px;
+    margin-top: -6px;
+    text-align: left;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .container {
     margin-bottom: 80px;
   }
 
-  .title {
-    align-items: center;
-  }
   .title h2 {
     font-size: 24px;
     margin-top: 12px;
   }
+
   .title h3 {
-    display: none;
-  }
-  .title p {
     font-size: 10px;
+    line-height: 12px;
   }
 }
