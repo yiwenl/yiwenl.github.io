@@ -1,3 +1,28 @@
+@keyframes generativeFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp {
+  opacity: 0;
+  animation: generativeFadeInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1)
+    var(--fade-delay, 0s) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fadeInUp {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .container {
   max-width: 1280px;
   margin: 0 auto;

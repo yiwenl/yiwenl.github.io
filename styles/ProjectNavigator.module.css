@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   width: 100%;
   height: 200px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -6,6 +7,23 @@
   padding: 0 40px;
   display: flex;
   align-items: center;
+}
+
+.homeLink {
+  margin-left: auto;
+  align-self: center;
+  font-family: Inconsolata;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+}
+
+.homeLink:hover {
+  opacity: 0.55;
 }
 
 .container h1 {
@@ -52,6 +70,10 @@
   }
 
   .container p {
+    font-size: 10px;
+  }
+
+  .homeLink {
     font-size: 10px;
   }
 }

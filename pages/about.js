@@ -10,11 +10,17 @@ const About = () => {
     <div className={styles.about}>
       <Meta title={"Wensday | About"} />
       <Header />
-      <div className={styles.logo}>
+      <div
+        className={`${styles.logo} ${styles.fadeInUp}`}
+        style={{ "--fade-delay": "0ms" }}
+      >
         <Image src={"/assets/logo.svg"} alt="" fill className={styles.image} />
       </div>
       <div className={styles.container}>
-        <p className={styles.body}>
+        <p
+          className={`${styles.body} ${styles.fadeInUp}`}
+          style={{ "--fade-delay": "90ms" }}
+        >
           WENSDAY is the portfolio of Yi-Wen LIN — creative coder and generative
           artist from Taiwan. Based in London, UK.
           <br />
@@ -22,7 +28,10 @@ const About = () => {
           Working remotely with clients and partners worldwide.
         </p>
         <div className={styles.bottomContainer}>
-          <div className={styles.extraDescription}>
+          <div
+            className={`${styles.extraDescription} ${styles.fadeInUp}`}
+            style={{ "--fade-delay": "160ms" }}
+          >
             After living in western culture for most of his life, he is still
             attached to the eastern culture and gets even more inspired by it
             now.
@@ -38,7 +47,10 @@ const About = () => {
             challenges.
           </div>
           <div className={styles.links}>
-            <div className={styles.linksBlock}>
+            <div
+              className={`${styles.linksBlock} ${styles.fadeInUp}`}
+              style={{ "--fade-delay": "220ms" }}
+            >
               <p className={styles.linksTitle}>Talks & Interviews</p>
               <a
                 href="https://www.youtube.com/watch?v=Scfb9jHKLz4&ab_channel=GROWParis"
@@ -56,7 +68,10 @@ const About = () => {
                 <p>Talk : The Importance of R&D</p>
               </a>
             </div>
-            <div className={styles.linksBlock}>
+            <div
+              className={`${styles.linksBlock} ${styles.fadeInUp}`}
+              style={{ "--fade-delay": "280ms" }}
+            >
               <p className={styles.linksTitle}>Writings</p>
               <a
                 href="https://yiwenl.substack.com/p/the-fire-within"
@@ -86,7 +101,10 @@ const About = () => {
                 </p>
               </a>
             </div>
-            <div className={styles.linksBlock}>
+            <div
+              className={`${styles.linksBlock} ${styles.fadeInUp}`}
+              style={{ "--fade-delay": "340ms" }}
+            >
               <p className={styles.linksTitle}>More Links</p>
               <p>
                 <a href="https://vimeo.com/yiwenlin" target="_blank">

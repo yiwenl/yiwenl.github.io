@@ -12,6 +12,9 @@ const ProjectNavigator = ({ title, id }) => {
       <Link href="/projects/[id]" as={`/projects/${id}`}>
         <h1>{title}</h1>
       </Link>
+      <Link href="/" as="/" className={styles.homeLink}>
+        Home
+      </Link>
     </div>
   );
 };
