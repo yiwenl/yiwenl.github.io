@@ -1,4 +1,4 @@
-import Head from "next/Head";
+import Head from "next/head";
 
 const Meta = ({ title }) => {
   const _title = title === undefined ? `Yi-Wen | Creative Coder` : title;
