@@ -1,60 +1,40 @@
-# GitHub Pages Deployment
+# GitHub Pages deployment
 
-This repository is configured to deploy the `wensday2` Next.js project to GitHub Pages.
+This repository is a Next.js app deployed to GitHub Pages via **GitHub Actions**. There is no manual copy step: pushing to **`main` or `master`** (whichever is your default production branch) builds a static export and publishes it automatically.
 
 ## How it works
 
-1. **GitHub Actions Workflow**: The `.github/workflows/deploy.yml` file automatically builds and deploys your site when you push to the main branch.
+1. **Workflow**: [.github/workflows/deploy.yml](.github/workflows/deploy.yml) runs on pushes and pull requests targeting `main` or `master`, and can be run manually (**Actions → Deploy to GitHub Pages → Run workflow**).
 
-2. **Build Process**: 
-   - The workflow runs `npm run export` in the `wensday2` directory
-   - This creates static files in the `wensday2/out` directory
-   - GitHub Pages serves these static files
+2. **Build**: `npm ci` and `npm run export` run at the repository root. Output is written to the `out/` directory (gitignored).
 
-3. **Configuration**: The `wensday2/next.config.js` is configured with:
-   - `output: 'export'` - Generates static files
-   - `trailingSlash: true` - Adds trailing slashes to URLs
-   - `images: { unoptimized: true }` - Disables image optimization for static export
+3. **Publish**: The workflow uploads `out/` as a Pages artifact and deploys it. Pull requests only run the build job; **deploy runs for pushes to `main` or `master`, and for `workflow_dispatch` on those branches.**
 
-## Local Development
+4. **Next.js**: [next.config.js](next.config.js) uses `output: 'export'`, `trailingSlash: true`, and `images: { unoptimized: true }` for static export compatibility.
 
-To test the build locally:
+## Repository settings
+
+Under **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”). Do not commit the contents of `out/` to the repo.
+
+## Local development
 
 ```bash
-cd wensday2
 npm install
+npm run dev
+```
+
+## Local production preview
+
+```bash
 npm run export
 ```
 
-Then serve the `out` directory with a static server:
+Then serve `out/` with any static file server, for example:
 
 ```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js
 npx serve out
-
-# Using PHP
-php -S localhost:8000 -t out
 ```
 
-## Manual Deployment
-
-If you need to deploy manually:
-
-1. Build the project:
-   ```bash
-   cd wensday2
-   npm run export
-   ```
-
-2. Copy the contents of `wensday2/out` to your GitHub Pages source directory (usually the root or `/docs`)
-
-## GitHub Pages Settings
-
-Make sure your GitHub Pages settings are configured to:
-- Source: "GitHub Actions" (this will use the workflow we created)
-- Or if using manual deployment: Source: "Deploy from a branch" → select your branch and set the folder to `/docs` or root
-
-The workflow will automatically handle the deployment process. 
+```bash
+python -m http.server 8000 --directory out
+```
