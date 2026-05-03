@@ -1,0 +1,23 @@
+{
+  "name": "wensday",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "gl-matrix": "^3.4.3",
+    "next": "13.0.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-player": "^2.11.0",
+    "scheduling": "^1.3.5"
+  },
+  "devDependencies": {
+    "eslint": "^9.24.0"
+  }
+}

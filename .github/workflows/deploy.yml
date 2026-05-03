@@ -2,9 +2,10 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main, master]
   pull_request:
-    branches: [ main ]
+    branches: [main, master]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -21,33 +22,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: wensday2/package-lock.json
-      
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
       - name: Install dependencies
-        run: |
-          cd wensday2
-          npm ci
-      
+        run: npm ci
+
       - name: Build Next.js project
-        run: |
-          cd wensday2
-          npm run export
-      
+        run: npm run export
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: wensday2/out
+          path: out
 
   deploy:
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -56,4 +54,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
