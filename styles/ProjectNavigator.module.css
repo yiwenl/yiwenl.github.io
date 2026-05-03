@@ -12,6 +12,8 @@
 .homeLink {
   margin-left: auto;
   align-self: center;
+  position: relative;
+  z-index: 2;
   font-family: Inconsolata;
   font-size: 14px;
   font-style: normal;
@@ -31,6 +33,7 @@
   left: 30%;
   padding-left: 65px;
   box-sizing: border-box;
+  z-index: 0;
 
   font-family: title, serif;
   font-size: 56px;
@@ -41,6 +44,8 @@
 }
 
 .container p {
+  position: relative;
+  z-index: 2;
   font-family: Inconsolata;
   font-size: 14px;
   font-style: normal;
