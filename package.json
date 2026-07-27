@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "gl-matrix": "^3.4.3",
-    "next": "^15.5.18",
+    "next": "^15.5.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-player": "^2.11.0",
